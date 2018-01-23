@@ -6,6 +6,7 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import { FilmListComponent } from './film-list/film-list.component';
+import { WunderlistListComponent } from './wunderlist-list/wunderlist-list.component';
 
 
 
@@ -13,7 +14,8 @@ import { FilmListComponent } from './film-list/film-list.component';
   declarations: [
     AppComponent,
     AuthorizationComponent,
-    FilmListComponent
+    FilmListComponent,
+    WunderlistListComponent
   ],
   imports: [
     BrowserModule,

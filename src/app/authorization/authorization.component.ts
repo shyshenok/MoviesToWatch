@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {TokenObject} from "../models/token";
 
@@ -17,7 +17,8 @@ export class AuthorizationComponent implements OnInit {
   tokenObject: TokenObject;
 
   constructor(private route: ActivatedRoute,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private router: Router,) {
   }
 
   ngOnInit() {
@@ -30,25 +31,34 @@ export class AuthorizationComponent implements OnInit {
         return;
       }
 
-      const h = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
 
       this.http.post<TokenObject>("http://localhost:8080/", {
         "client_id": this.clientId,
         "client_secret": this.clientSecret,
         "code": code
-      }, {headers:h}).subscribe(data => {
+      }).subscribe(data => {
+        if (data.access_token === undefined) {
+          return;
+        }
+
         console.log(data.access_token);
         this.tokenObject = data;
+        this.goToListComponent();
       });
 
     });
+
   }
 
 
   authorization() {
     console.log('hello');
     window.location.replace(this.url);
-  //
+  }
+
+  goToListComponent() {
+    console.log("goToListComponent");
+    this.router.navigate(['list']);
   }
 
 
