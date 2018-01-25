@@ -4,7 +4,7 @@
 
 
 
-export interface WounderList {
+export interface WunderList {
   created_at: string;
   created_by_request_id: string;
   id: number;
