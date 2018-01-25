@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import { FilmListComponent } from './film-list/film-list.component';
 import { WunderlistListComponent } from './wunderlist-list/wunderlist-list.component';
+import {SharedTokenService} from "./services/shared-token.service";
 
 
 
@@ -22,7 +23,7 @@ import { WunderlistListComponent } from './wunderlist-list/wunderlist-list.compo
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [SharedTokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
