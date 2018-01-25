@@ -1,7 +1,12 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Injectable, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {TokenObject} from "../models/token";
+import {SharedTokenService} from "../services/shared-token.service";
+
+
+@Injectable()
+
 
 @Component({
   selector: 'app-authorization',
@@ -14,15 +19,14 @@ export class AuthorizationComponent implements OnInit {
   clientSecret: string = "5ae146130c3d583a21144dfc81b4f3459edaf6d8f031a2ed1cc676c030a3";
   redirectUri: string = "http://localhost:4200";
   url: string = "https://www.wunderlist.com/oauth/authorize?client_id=" + this.clientId + "&redirect_uri=" + this.redirectUri + "&state=RANDOM";
-  tokenObject: TokenObject;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
-              private router: Router,) {
+              private router: Router,
+              private sharedServiceToken: SharedTokenService) {
   }
 
   ngOnInit() {
-    console.log('OnInit');
     this.route.queryParams.subscribe(qParams => {
       let code = qParams['code'];
       console.log('code ' + code);
@@ -37,19 +41,20 @@ export class AuthorizationComponent implements OnInit {
         "client_secret": this.clientSecret,
         "code": code
       }).subscribe(data => {
+
         if (data.access_token === undefined) {
           return;
         }
 
-        console.log(data.access_token);
-        this.tokenObject = data;
+        this.sharedServiceToken.sharedServiceToken = data;
+
         this.goToListComponent();
       });
+
 
     });
 
   }
-
 
   authorization() {
     window.location.replace(this.url);
