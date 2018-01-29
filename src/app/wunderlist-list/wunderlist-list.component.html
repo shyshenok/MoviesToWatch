@@ -1,3 +1,6 @@
-<ul *ngFor="let list of this.wunderList">
-  <li><a (click)="goToFilmList()">{{list.title}}</a></li>
+<ul *ngFor="let list of wunderList">
+  <li><a [routerLink]="['/list', list.title]"
+         [queryParams]="{'list_id': list.id}">{{list.title}}</a></li>
 </ul>
+
+<router-outlet></router-outlet>
