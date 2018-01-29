@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTasks} from "../models/wunderlistTasks";
 import {ActivatedRoute, Router} from "@angular/router";
+import {forEach} from "@angular/router/src/utils/collection";
 
 
 @Injectable()
@@ -15,7 +16,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 export class FilmListComponent implements OnInit {
 
-  apiKey:string;
+  apiKey:string = '5942dc95';
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
   filmList: WunderlistTasks;
@@ -28,11 +29,7 @@ export class FilmListComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-  //
-  //   // const imdb = require('imdb-api');
-  //   // imdb.get('The Toxic Avenger', {apiKey: this.apiKey}).then(console.log).catch(console.log);
-  //   //
-  //
+
     this.route.queryParams.subscribe(qParams => {
 
       this.headerToken = this.sharedServiceToken.sharedServiceToken.access_token;
@@ -56,6 +53,14 @@ export class FilmListComponent implements OnInit {
     console.log(array);
     console.log( this.num, this.randChoise);
 
+  }
+
+  doSynchronize(array:Array<WunderlistTasks>) {
+    let titleArray = array.map(o => o.title);
+    console.log(titleArray);
+    const imdb = require('imdb-api');
+
+    titleArray.forEach(o => imdb.get(o, {apiKey: this.apiKey}).then(console.log).catch(console.log));
   }
 
   back() {
