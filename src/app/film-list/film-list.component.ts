@@ -18,9 +18,9 @@ export class FilmListComponent implements OnInit {
   apiKey:string;
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
-
   filmList: WunderlistTasks;
-
+  num: number;
+  randChoise: string;
 
   constructor(private httpClient: HttpClient,
               private sharedServiceToken: SharedTokenService,
@@ -48,8 +48,14 @@ export class FilmListComponent implements OnInit {
 
   }
 
-  doRamdomize(array:Array<WunderlistTasks>) {
+  doRandomize(array:Array<WunderlistTasks>) {
+    let min = 0;
+    let max = array.length-1;
+    this.num = Math.floor(Math.random() * (max - min + 1)) + min+1;
+    this.randChoise = array[this.num-1].title;
     console.log(array);
+    console.log( this.num, this.randChoise);
+
   }
 
   back() {

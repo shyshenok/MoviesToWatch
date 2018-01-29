@@ -1,11 +1,13 @@
 <div>
-  <ol *ngFor="let film of filmList">
-    <li><a>{{film.title}}</a></li>
+  <ol>
+    <li *ngFor="let film of filmList">
+      <a>{{film.title}}</a>
+    </li>
   </ol>
 </div>
 
 <div>
-  <a (click)="doRamdomize(filmList)">Random</a>
+  <a (click)="doRandomize(filmList)">Random:{{this.num}} {{this.randChoise}}</a>
   <a (click)="doSynchronize()">synchronize IMDB</a>
   <a (click)="back()">Back</a>
 </div>
