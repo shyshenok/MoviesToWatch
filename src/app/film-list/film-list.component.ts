@@ -2,7 +2,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTasks} from "../models/wunderlistTasks";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Injectable()
@@ -19,12 +19,13 @@ export class FilmListComponent implements OnInit {
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
 
-  taskList: WunderlistTasks;
+  filmList: WunderlistTasks;
 
 
   constructor(private httpClient: HttpClient,
               private sharedServiceToken: SharedTokenService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
   //
@@ -36,19 +37,23 @@ export class FilmListComponent implements OnInit {
 
       this.headerToken = this.sharedServiceToken.sharedServiceToken.access_token;
 
-      console.log("this.headerToken " + this.headerToken);
-
       let params = new HttpParams();
       params = params.append('list_id', qParams["list_id"]);
 
       this.httpClient.get<WunderlistTasks>("https://a.wunderlist.com/api/v1/tasks", {headers: {'X-Access-Token': this.headerToken, 'X-Client-ID': this.clientId}, params: params},)
         .subscribe(data => {
-          console.log('jjkhjkjljll');
-          console.log(data);
+          this.filmList = data;
         })
     });
 
+  }
 
+  doRamdomize(array:Array<WunderlistTasks>) {
+    console.log(array);
+  }
+
+  back() {
+    this.router.navigate(['list']);
   }
 
 }

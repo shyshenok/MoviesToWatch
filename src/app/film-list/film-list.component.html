@@ -1,7 +1,12 @@
 <div>
-  <ul>
-    <li>scsdcsdcsdcdscd</li>
-  </ul>
+  <ol *ngFor="let film of filmList">
+    <li><a>{{film.title}}</a></li>
+  </ol>
 </div>
 
+<div>
+  <a (click)="doRamdomize(filmList)">Random</a>
+  <a (click)="doSynchronize()">synchronize IMDB</a>
+  <a (click)="back()">Back</a>
+</div>
 
