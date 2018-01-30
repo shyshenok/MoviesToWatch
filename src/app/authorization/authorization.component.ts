@@ -27,32 +27,44 @@ export class AuthorizationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(qParams => {
-      let code = qParams['code'];
-      console.log('code ' + code);
 
-      if (code === null) {
-        return;
-      }
+    let token = localStorage.getItem('access_token');
+    if(!token) {
+
+      this.route.queryParams.subscribe(qParams => {
 
 
-      this.http.post<TokenObject>("http://localhost:8080/", {
-        "client_id": this.clientId,
-        "client_secret": this.clientSecret,
-        "code": code
-      }).subscribe(data => {
+        let code = qParams['code'];
+        console.log('code ' + code);
 
-        if (data.access_token === undefined) {
+        if (code === null) {
           return;
         }
 
-        this.sharedServiceToken.sharedServiceToken = data;
+        this.http.post<TokenObject>("http://localhost:8080/", {
+          "client_id": this.clientId,
+          "client_secret": this.clientSecret,
+          "code": code
+        }).subscribe(data => {
 
-        this.goToListComponent();
+          if (data.access_token === undefined) {
+            return;
+          }
+
+          localStorage.setItem('access_token', data.access_token);
+
+          this.sharedServiceToken.saveServiceToken(data.access_token);
+
+          this.goToListComponent();
+        });
+
       });
+    } else {
+      console.log('else');
+      this.sharedServiceToken.getServiceToken();
+      this.goToListComponent();
 
-
-    });
+    }
 
   }
 

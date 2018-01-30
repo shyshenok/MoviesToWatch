@@ -3,7 +3,6 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTasks} from "../models/wunderlistTasks";
 import {ActivatedRoute, Router} from "@angular/router";
-import {forEach} from "@angular/router/src/utils/collection";
 
 
 @Injectable()
@@ -32,7 +31,7 @@ export class FilmListComponent implements OnInit {
 
     this.route.queryParams.subscribe(qParams => {
 
-      this.headerToken = this.sharedServiceToken.sharedServiceToken.access_token;
+      this.headerToken = this.sharedServiceToken.getServiceToken().access_token;
 
       let params = new HttpParams();
       params = params.append('list_id', qParams["list_id"]);

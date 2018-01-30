@@ -2,7 +2,7 @@
 
 
 
-export interface TokenObject {
+export class TokenObject {
 
   access_token: string;
 

@@ -21,7 +21,7 @@ export class WunderlistListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.headerToken = this.sharedServiceToken.sharedServiceToken.access_token;
+    this.headerToken = this.sharedServiceToken.getServiceToken().access_token;
     console.log(this.headerToken);
 
 
