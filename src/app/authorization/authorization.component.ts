@@ -11,7 +11,7 @@ import {SharedTokenService} from "../services/shared-token.service";
 @Component({
   selector: 'app-authorization',
   templateUrl: './authorization.component.html',
-  styleUrls: ['./authorization.component.css']
+  styleUrls: ['./authorization.component.scss']
 })
 export class AuthorizationComponent implements OnInit {
 
@@ -60,7 +60,6 @@ export class AuthorizationComponent implements OnInit {
 
       });
     } else {
-      console.log('else');
       this.sharedServiceToken.getServiceToken();
       this.goToListComponent();
 

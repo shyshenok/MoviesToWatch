@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { FilmListComponent } from './film-list/film-list.component';
 import { WunderlistListComponent } from './wunderlist-list/wunderlist-list.component';
 import {SharedTokenService} from "./services/shared-token.service";
+import { ExitButtonComponent } from './exit-button/exit-button.component';
 
 
 
@@ -16,7 +17,8 @@ import {SharedTokenService} from "./services/shared-token.service";
     AppComponent,
     AuthorizationComponent,
     FilmListComponent,
-    WunderlistListComponent
+    WunderlistListComponent,
+    ExitButtonComponent
   ],
   imports: [
     BrowserModule,

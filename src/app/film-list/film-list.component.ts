@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTasks} from "../models/wunderlistTasks";
 import {ActivatedRoute, Router} from "@angular/router";
+import {MovieObject} from "../models/movie";
 
 
 @Injectable()
@@ -15,7 +16,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 export class FilmListComponent implements OnInit {
 
-  apiKey:string = '5942dc95';
+  // apiKey:string = '5942dc95';
+  apiToken:string = 'f45b71a5-e745-4965-8154-75f150b61744';
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
   filmList: WunderlistTasks;
@@ -33,10 +35,13 @@ export class FilmListComponent implements OnInit {
 
       this.headerToken = this.sharedServiceToken.getServiceToken().access_token;
 
+
       let params = new HttpParams();
       params = params.append('list_id', qParams["list_id"]);
 
-      this.httpClient.get<WunderlistTasks>("https://a.wunderlist.com/api/v1/tasks", {headers: {'X-Access-Token': this.headerToken, 'X-Client-ID': this.clientId}, params: params},)
+      this.httpClient.get<WunderlistTasks>("https://a.wunderlist.com/api/v1/tasks",
+        {headers: {'Accept-Language': 'ru-RU','Content-Language': 'ru-RU','X-Access-Token': this.headerToken, 'X-Client-ID': this.clientId},
+        params: params},)
         .subscribe(data => {
           this.filmList = data;
         })
@@ -56,10 +61,13 @@ export class FilmListComponent implements OnInit {
 
   doSynchronize(array:Array<WunderlistTasks>) {
     let titleArray = array.map(o => o.title);
-    console.log(titleArray);
-    const imdb = require('imdb-api');
+    // const imdb = require('imdb-api');
 
-    titleArray.forEach(o => imdb.get(o, {apiKey: this.apiKey}).then(console.log).catch(console.log));
+    this.httpClient.get<MovieObject>('https://api.myapifilms.com/getTokenInfo/?token=' + this.apiToken).subscribe(data => {
+      console.log(data);
+    })
+
+    // titleArray.forEach(o => imdb.get(o, {apiKey: this.apiKey}).then(console.log).catch(console.log));
   }
 
   back() {
