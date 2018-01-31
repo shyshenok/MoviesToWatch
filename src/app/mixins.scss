@@ -1,0 +1,41 @@
+
+@mixin button($padding, $color, $font-size) {
+  padding: $padding; //24px
+  color: $color;
+  font-size: $font-size; //24
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  text-transform: uppercase;
+}
+@mixin svg-rectangle($stroke-dasharray, $stroke-width ,$transition-time) {
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    rect {
+      fill: none;
+      stroke: #fff;
+      stroke-dasharray: $stroke-dasharray; //400, 0
+      stroke-width: $stroke-width; //3
+      transition: all $transition-time cubic-bezier(1, 2, 1, 2); //1300ms
+
+    }
+  }
+}
+@mixin animate-hover-button($stroke-width-hover, $stroke-dasharray-hover,
+                            $stroke-dashoffset, $scale-item, $text-shadow-color) {
+    svg {
+      rect {
+        stroke-width: $stroke-width-hover; //5
+        stroke-dasharray: $stroke-dasharray-hover; //0 300
+        stroke-dashoffset: $stroke-dashoffset; //0
+      }
+    }
+    transform: scale($scale-item); //1,05
+    text-shadow: 1px 1px 0 $text-shadow-color;
+
+}
