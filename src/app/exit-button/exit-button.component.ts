@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'app-exit-button',
   templateUrl: './exit-button.component.html',
-  styleUrls: ['./exit-button.component.css']
+  styleUrls: ['./exit-button.component.scss']
 })
 export class ExitButtonComponent implements OnInit {
 

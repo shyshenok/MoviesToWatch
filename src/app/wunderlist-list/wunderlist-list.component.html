@@ -1,7 +1,9 @@
-<ul *ngFor="let list of wunderList">
-  <li><a [routerLink]="['/list', list.title]"
-         [queryParams]="{'list_id': list.id}">{{list.title}}</a></li>
+<app-exit-button></app-exit-button>
+<ul class="wunderlist">
+  <li *ngFor="let list of wunderList">
+    <a [routerLink]="['/list', list.title]"
+         [queryParams]="{'list_id': list.id}">{{list.title}}</a>
+  </li>
 </ul>
 
-<app-exit-button></app-exit-button>
 <router-outlet></router-outlet>
