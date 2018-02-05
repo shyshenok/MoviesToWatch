@@ -1,0 +1,20 @@
+.film-list {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: ". a a b" ". a a ."; }
+  .film-list .content {
+    grid-area: a; }
+    .film-list .content app-textarea {
+      width: 100%;
+      flex-flow: row;
+      justify-content: center; }
+  .film-list app-exit-button {
+    grid-area: b;
+    align-self: flex-start;
+    justify-content: flex-start;
+    margin: 20px 40px; }
+  .film-list .list-of-film li a {
+    word-break: break-all; }
+
+/*# sourceMappingURL=film-list.component.css.map */

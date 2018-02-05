@@ -1,0 +1,36 @@
+
+
+@import "../../variables";
+@import '../mixins';
+
+
+.film-list {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    ". a a b"
+    ". a a .";
+  .content {
+    grid-area: a;
+    app-textarea {
+      width: 100%;
+      flex-flow: row;
+      justify-content: center;
+    }
+  }
+  app-exit-button {
+    grid-area: b;
+    align-self: flex-start;
+    justify-content: flex-start;
+    margin: 20px 40px;
+  }
+
+  .list-of-film {
+    li {
+      a {
+        word-break: break-all;
+      }
+    }
+  }
+}

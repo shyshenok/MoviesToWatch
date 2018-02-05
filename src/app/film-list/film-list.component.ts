@@ -11,13 +11,15 @@ import {MovieObject} from "../models/movie";
 @Component({
   selector: 'app-film-list',
   templateUrl: './film-list.component.html',
-  styleUrls: ['./film-list.component.css']
+  styleUrls: ['./film-list.component.scss']
 })
 
 export class FilmListComponent implements OnInit {
 
   // apiKey:string = '5942dc95';
-  apiToken:string = 'f45b71a5-e745-4965-8154-75f150b61744';
+  // apiToken:string = 'f45b71a5-e745-4965-8154-75f150b61744';
+  apiKey: string = 'd59e2b0b45e54e54737b34e64dd843b3';
+  apiToken: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTllMmIwYjQ1ZTU0ZTU0NzM3YjM0ZTY0ZGQ4NDNiMyIsInN1YiI6IjVhNzIyYjU5YzNhMzY4NjA3NDAxMGMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXlbc-LYSK5-OVqSkfoRNExGX279hDJpUKMfrVc7lnI'
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
   filmList: WunderlistTasks;
@@ -45,6 +47,15 @@ export class FilmListComponent implements OnInit {
         .subscribe(data => {
           this.filmList = data;
         })
+
+      this.httpClient.post('https://api.themoviedb.org/4/auth/request_token',
+        {headers:{"Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTllMmIwYjQ1ZTU0ZTU0NzM3YjM0ZTY0ZGQ4NDNiMyIsInN1YiI6IjVhNzIyYjU5YzNhMzY4NjA3NDAxMGMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXlbc-LYSK5-OVqSkfoRNExGX279hDJpUKMfrVc7lnI',
+                  "Content-Type": "application/json;charset=utf-8"},
+        // 'api_key': this.apiKey,
+        // 'access_token': this.apiToken
+      }).subscribe(data =>{
+        console.log(data);
+      })
     });
 
   }
@@ -61,13 +72,13 @@ export class FilmListComponent implements OnInit {
 
   doSynchronize(array:Array<WunderlistTasks>) {
     let titleArray = array.map(o => o.title);
-    // const imdb = require('imdb-api');
 
-    this.httpClient.get<MovieObject>('https://api.myapifilms.com/getTokenInfo/?token=' + this.apiToken).subscribe(data => {
-      console.log(data);
-    })
-
-    // titleArray.forEach(o => imdb.get(o, {apiKey: this.apiKey}).then(console.log).catch(console.log));
+    titleArray.forEach(title => {
+      this.httpClient.get<MovieObject>('http://localhost:8080/apifilms/imdb/idIMDB?title='+title+'token='+this.apiToken+'&format=json&language=ru-RU&filter=2&imit=1')
+        .subscribe(data => {
+        console.log(data);
+      });
+    });
   }
 
   back() {

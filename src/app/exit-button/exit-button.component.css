@@ -1,7 +1,7 @@
 .exit-button {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-areas: ". . . a" ". . . a"; }
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: ". a" ". a"; }
   .exit-button .btn {
     grid-area: a;
     justify-self: self-start;

@@ -1,14 +1,20 @@
-<div>
-  <ol>
-    <li *ngFor="let film of filmList">
-      <a>{{film.title}}</a>
-    </li>
-  </ol>
-</div>
+<div class="film-list">
+  <app-exit-button></app-exit-button>
 
-<div>
-  <a (click)="doRandomize(filmList)">Random:{{this.num}} {{this.randChoise}}</a>
-  <a (click)="doSynchronize(filmList)">synchronize IMDB</a>
-  <a (click)="back()">Back</a>
-</div>
+  <div class="content">
+    <app-textarea></app-textarea>
+    <div class="control-button">
+      <a (click)="doRandomize(filmList)">Random:{{this.num}} {{this.randChoise}}</a>
+      <a (click)="doSynchronize(filmList)">synchronize IMDB</a>
+      <a (click)="back()">Back</a>
+    </div>
+    <div class="list-of-film">
+      <ol>
+        <li *ngFor="let film of filmList">
+          <a>{{film.title}}</a>
+        </li>
+      </ol>
+    </div>
+  </div>
 
+</div>

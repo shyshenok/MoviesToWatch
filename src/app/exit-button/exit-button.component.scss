@@ -5,10 +5,10 @@
 
 .exit-button {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-areas:
-    ". . . a"
-    ". . . a";
+    ". a"
+    ". a";
   .btn {
     grid-area: a;
     justify-self: self-start;
