@@ -16,5 +16,54 @@
     margin: 20px 40px; }
   .film-list .list-of-film li a {
     word-break: break-all; }
+  .film-list .control-button-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "a a a" "b b b"; }
+    .film-list .control-button-wrapper .control-button {
+      grid-area: a;
+      padding: 14px 0; }
+      .film-list .control-button-wrapper .control-button a {
+        display: inline-block;
+        width: 100%;
+        max-width: 150px;
+        line-height: 40px;
+        text-align: center;
+        color: #ffffff;
+        justify-content: space-between;
+        margin-right: 16px;
+        text-transform: uppercase;
+        font-size: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        letter-spacing: 0; }
+        .film-list .control-button-wrapper .control-button a:hover:before {
+          bottom: auto;
+          top: 0;
+          width: 70%; }
+        .film-list .control-button-wrapper .control-button a:hover, .film-list .control-button-wrapper .control-button a:active {
+          letter-spacing: 5px; }
+          .film-list .control-button-wrapper .control-button a:hover:before, .film-list .control-button-wrapper .control-button a:hover:after, .film-list .control-button-wrapper .control-button a:active:before, .film-list .control-button-wrapper .control-button a:active:after {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transition: width 350ms ease-in-out;
+            transition: width 350ms ease-in-out;
+            width: 70%;
+            border-color: #ffffff; }
+        .film-list .control-button-wrapper .control-button a:before, .film-list .control-button-wrapper .control-button a:after {
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+          border: 1px solid transparent;
+          bottom: 0px;
+          content: " ";
+          display: block;
+          margin: 0 auto;
+          position: relative;
+          -webkit-transition: all 280ms ease-in-out;
+          transition: all 280ms ease-in-out;
+          width: 0; }
+    .film-list .control-button-wrapper .response {
+      grid-area: b;
+      color: #ffffff; }
 
 /*# sourceMappingURL=film-list.component.css.map */

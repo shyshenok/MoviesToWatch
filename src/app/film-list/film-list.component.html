@@ -3,10 +3,13 @@
 
   <div class="content">
     <app-textarea></app-textarea>
-    <div class="control-button">
-      <a (click)="doRandomize(filmList)">Random:{{this.num}} {{this.randChoise}}</a>
-      <a (click)="doSynchronize(filmList)">synchronize IMDB</a>
-      <a (click)="back()">Back</a>
+    <div class="control-button-wrapper">
+      <div class="control-button">
+        <a class="btn" (click)="doRandomize(filmList)">Random</a>
+        <a class="btn"  (click)="doSynchronize(filmList)">sync IMDB</a>
+        <a class="btn"  (click)="back()">Back</a>
+      </div>
+      <p class="response">Random result: {{this.num}} {{this.randChoise}}</p>
     </div>
     <div class="list-of-film">
       <ol>
