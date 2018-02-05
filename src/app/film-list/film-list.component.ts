@@ -23,6 +23,7 @@ export class FilmListComponent implements OnInit {
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
   filmList: WunderlistTasks;
+  displayFilmList: WunderlistTasks;
   num: number;
   randChoise: string;
 
@@ -32,6 +33,7 @@ export class FilmListComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+
 
     this.route.queryParams.subscribe(qParams => {
 
@@ -46,7 +48,10 @@ export class FilmListComponent implements OnInit {
         params: params},)
         .subscribe(data => {
           this.filmList = data;
-        })
+          console.log(this.filmList);
+
+          this.displayFilmList = this.filmList;
+        });
 
       this.httpClient.post('https://api.themoviedb.org/4/auth/request_token',
         {headers:{"Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTllMmIwYjQ1ZTU0ZTU0NzM3YjM0ZTY0ZGQ4NDNiMyIsInN1YiI6IjVhNzIyYjU5YzNhMzY4NjA3NDAxMGMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXlbc-LYSK5-OVqSkfoRNExGX279hDJpUKMfrVc7lnI',
@@ -84,5 +89,26 @@ export class FilmListComponent implements OnInit {
   back() {
     this.router.navigate(['list']);
   }
+
+  onTabChange(tab:number) {
+    console.log('tab ' + tab);
+
+    if(tab === 0) {
+      this.displayFilmList = this.filmList;
+      return;
+    }
+
+    this.displayFilmList = this.filmList.filter(film => {
+      switch (tab){
+        case 1:
+          return film.created_by_id === 53342247;
+        case  2:
+          return film.created_by_id === 20359197;
+        default:
+          return true;
+      }
+    })
+  }
+
 
 }
