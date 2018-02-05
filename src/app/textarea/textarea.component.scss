@@ -5,10 +5,11 @@
 
 .textarea {
   width: 300px;
-  padding: 30px 0;
+  display: flex;
+  flex-flow: column-reverse;
   @media(min-width: 667px) {
     width: 500px;
-
+    height: 300px;
   }
 
   form {
@@ -18,12 +19,26 @@
       padding: 10px;
       font-size: 16px;
       font-family: 'Comfortaa', cursive;
-
+      border: none;
+      border-bottom: 1px solid $button-color;
     }
-
     button {
       width: 30%;
       align-self: flex-end;
+      margin: 20px 0;
+      height: 40px;
+      border: 1px solid $button-color;
+      color: $button-color;
+      background-color: transparent;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.7s ease;
+      &:hover {
+        letter-spacing: 2px;
+        transform: scale(1.03);
+        font-weight: 600;
+        text-shadow: 1px 1px 0 $bottom-text-shadow-color;
+      }
     }
   }
 }
@@ -34,11 +49,6 @@ input[type="text"]{
   width: 100%;
   box-sizing: border-box;
   letter-spacing: 1px;}
-
-
-:focus{
-  outline: none;
-}
 
 .input-effect{
   position: relative;
@@ -54,75 +64,74 @@ input[type="text"]{
 }
 
 
-.effect-20 {
-  border: 1px solid #3c4c7f;
+.input-border-style {
   padding: 7px 14px;
   transition: 0.4s;
   background: transparent;
 }
 
-.effect-20 ~ .focus-border:before,
-.effect-20 ~ .focus-border:after{
+.input-border-style ~ .focus-border:before,
+.input-border-style ~ .focus-border:after{
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #fff;
+  background-color: $input-label-border-color;
   transition: 0.3s;
 }
-.effect-20 ~ .focus-border:after{
+.input-border-style ~ .focus-border:after{
   top: auto;
   bottom: 0;
   left: auto;
   right: 0;
 }
-.effect-20 ~ .focus-border i:before,
-.effect-20 ~ .focus-border i:after{
+.input-border-style ~ .focus-border i:before,
+.input-border-style ~ .focus-border i:after{
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 2px;
   height: 0;
-  background-color: #fff;
+  background-color: $input-label-border-color;
   transition: 0.4s;
 }
-.effect-20 ~ .focus-border i:after{
+.input-border-style ~ .focus-border i:after{
   left: auto;
   right: 0;
   top: auto;
   bottom: 0;
 }
-.effect-20:focus ~ .focus-border:before,
-.effect-20:focus ~ .focus-border:after,
-.has-content.effect-20 ~ .focus-border:before,
-.has-content.effect-20 ~ .focus-border:after{
+.input-border-style:focus ~ .focus-border:before,
+.input-border-style:focus ~ .focus-border:after,
+.has-content.input-border-style ~ .focus-border:before,
+.has-content.input-border-style ~ .focus-border:after{
   width: 100%;
   transition: 0.3s;}
-.effect-20:focus ~ .focus-border i:before,
-.effect-20:focus ~ .focus-border i:after,
-.has-content.effect-20 ~ .focus-border i:before,
-.has-content.effect-20 ~ .focus-border i:after{
+.input-border-style:focus ~ .focus-border i:before,
+.input-border-style:focus ~ .focus-border i:after,
+.has-content.input-border-style ~ .focus-border i:before,
+.has-content.input-border-style ~ .focus-border i:after{
   height: 100%;
   transition: 0.4s;
 }
-.effect-20 ~ label{
+.input-border-style ~ label{
   position: absolute;
   left: 14px;
   width: 100%;
   top: 15px;
-  color: #3c4c7f;
+  color: $input-label-border-color;
   transition: 0.3s;
   letter-spacing: 0.5px;
   z-index: -1;
 
 }
-.effect-20:focus ~ label, .has-content.effect-20 ~ label{
+.input-border-style:focus ~ label, .has-content.input-border-style ~ label{
   top: -18px;
   left: 0;
   font-size: 12px;
-  color: #fff;
+  color: $input-label-border-color;
   transition: 0.3s;
 }

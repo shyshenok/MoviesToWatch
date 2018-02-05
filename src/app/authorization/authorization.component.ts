@@ -41,7 +41,7 @@ export class AuthorizationComponent implements OnInit {
           return;
         }
 
-        this.http.post<TokenObject>("http://localhost:8080/", {
+        this.http.post<TokenObject>("http://localhost:8080/wunderlist", {
           "client_id": this.clientId,
           "client_secret": this.clientSecret,
           "code": code

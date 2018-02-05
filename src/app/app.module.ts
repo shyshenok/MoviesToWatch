@@ -10,6 +10,8 @@ import { WunderlistListComponent } from './wunderlist-list/wunderlist-list.compo
 import {SharedTokenService} from "./services/shared-token.service";
 import { ExitButtonComponent } from './exit-button/exit-button.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { TabsComponent } from './tabs/tabs.component';
+import { TabComponent } from './tabs/tab/tab.component';
 
 
 
@@ -20,7 +22,9 @@ import { TextareaComponent } from './textarea/textarea.component';
     FilmListComponent,
     WunderlistListComponent,
     ExitButtonComponent,
-    TextareaComponent
+    TextareaComponent,
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     BrowserModule,

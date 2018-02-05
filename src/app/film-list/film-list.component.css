@@ -4,7 +4,9 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-areas: ". a a b" ". a a ."; }
   .film-list .content {
-    grid-area: a; }
+    grid-area: a;
+    align-self: center;
+    justify-self: center; }
     .film-list .content app-textarea {
       width: 100%;
       flex-flow: row;
@@ -14,8 +16,10 @@
     align-self: flex-start;
     justify-content: flex-start;
     margin: 20px 40px; }
-  .film-list .list-of-film li a {
-    word-break: break-all; }
+  .film-list .list-of-film ol {
+    padding: 16px; }
+    .film-list .list-of-film ol li a {
+      word-break: break-all; }
   .film-list .control-button-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -30,8 +34,6 @@
         line-height: 40px;
         text-align: center;
         color: #ffffff;
-        justify-content: space-between;
-        margin-right: 16px;
         text-transform: uppercase;
         font-size: 12px;
         transition: all 0.3s ease;
@@ -42,6 +44,7 @@
           top: 0;
           width: 70%; }
         .film-list .control-button-wrapper .control-button a:hover, .film-list .control-button-wrapper .control-button a:active {
+          text-shadow: 1px 1px 0 #4b709b;
           letter-spacing: 5px; }
           .film-list .control-button-wrapper .control-button a:hover:before, .film-list .control-button-wrapper .control-button a:hover:after, .film-list .control-button-wrapper .control-button a:active:before, .film-list .control-button-wrapper .control-button a:active:after {
             -webkit-backface-visibility: hidden;

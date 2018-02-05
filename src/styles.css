@@ -13,4 +13,7 @@ html, body {
 a {
   cursor: pointer; }
 
+:focus {
+  outline: none; }
+
 /*# sourceMappingURL=styles.css.map */
