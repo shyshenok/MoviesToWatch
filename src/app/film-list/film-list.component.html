@@ -1,7 +1,13 @@
 <div class="film-list">
   <app-exit-button></app-exit-button>
-
-  <a class="btn"  (click)="back()">Back</a>
+  <div class="back-btn-container">
+    <div class="back-btn"  (click)="back()">
+      <svg>
+        <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+      </svg>
+      Back
+    </div>
+  </div>
   <div class="content">
     <app-textarea></app-textarea>
     <div class="control-button-wrapper">

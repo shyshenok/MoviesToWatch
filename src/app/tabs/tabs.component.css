@@ -1,0 +1,17 @@
+.nav {
+  padding: 0;
+  border-bottom: 1px solid #4d78a0; }
+  .nav li {
+    display: inline-block;
+    line-height: 40px;
+    width: 100%;
+    max-width: 100px;
+    text-align: center;
+    color: #ffffff;
+    transition: all 0.6s ease; }
+
+.active {
+  border-top: 3px solid #4d78a0;
+  background-color: rgba(77, 120, 160, 0.3); }
+
+/*# sourceMappingURL=tabs.component.css.map */

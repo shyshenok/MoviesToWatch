@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-areas:
-    ". a a b"
+    "c a a b"
     ". a a .";
   .content {
     grid-area: a;
@@ -26,6 +26,20 @@
     align-self: flex-start;
     justify-content: flex-start;
     margin: 20px 40px;
+  }
+
+  .back-btn-container {
+    grid-area: c;
+    .back-btn {
+      //margin: 20px 40px;
+      align-self: flex-start;
+      justify-content: flex-end;
+      @include button((12px 20px), $button-color, 18px);
+      @include svg-rectangle((150, 0), 3, 0.7s);
+      &:hover {
+        @include animate-hover-button(5, (0, 150), 0, 1.05, $bottom-text-shadow-color);
+      }
+    }
   }
 
   .list-of-film {
