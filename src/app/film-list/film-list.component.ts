@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MovieObject} from "../models/movie";
 
 
+
 @Injectable()
 
 @Component({
@@ -22,8 +23,8 @@ export class FilmListComponent implements OnInit {
   apiToken: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTllMmIwYjQ1ZTU0ZTU0NzM3YjM0ZTY0ZGQ4NDNiMyIsInN1YiI6IjVhNzIyYjU5YzNhMzY4NjA3NDAxMGMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXlbc-LYSK5-OVqSkfoRNExGX279hDJpUKMfrVc7lnI'
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
-  filmList: WunderlistTasks;
-  displayFilmList: WunderlistTasks;
+  filmList: WunderlistTasks[];
+  displayFilmList: WunderlistTasks[];
   num: number;
   randChoise: string;
 
@@ -43,7 +44,7 @@ export class FilmListComponent implements OnInit {
       let params = new HttpParams();
       params = params.append('list_id', qParams["list_id"]);
 
-      this.httpClient.get<WunderlistTasks>("https://a.wunderlist.com/api/v1/tasks",
+      this.httpClient.get<WunderlistTasks[]>("https://a.wunderlist.com/api/v1/tasks",
         {headers: {'Accept-Language': 'ru-RU','Content-Language': 'ru-RU','X-Access-Token': this.headerToken, 'X-Client-ID': this.clientId},
         params: params},)
         .subscribe(data => {

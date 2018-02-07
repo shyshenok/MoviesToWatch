@@ -31,7 +31,7 @@
   .back-btn-container {
     grid-area: c;
     .back-btn {
-      //margin: 20px 40px;
+      margin: 20px 40px;
       align-self: flex-start;
       justify-content: flex-end;
       @include button((12px 20px), $button-color, 18px);
@@ -45,6 +45,7 @@
   .list-of-film {
     ol {
       padding: 16px;
+      min-height: 150px;
       li {
         a {
           word-break: break-all;

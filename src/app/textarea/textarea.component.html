@@ -1,8 +1,14 @@
 <div class="textarea">
   <form action="#">
     <div class="input-effect">
-      <input class="input-border-style" type="text" placeholder="">
-      <label>Name of film</label>
+      <input class="input-border-style"
+             type="text"
+             placeholder=""
+             name="inputValue"
+             [(ngModel)]="inputValue"
+             (focus)="focusFunction(true)"
+             (focusout)="focusFunction(false)"/>
+      <label class="label" [ngClass] = "top ?'label-has-content':'label'">Name of film</label>
       <span class="focus-border">
             	<i></i>
       </span>
@@ -10,4 +16,6 @@
 
     <button class="btn">Add new film</button>
   </form>
+
+
 </div>

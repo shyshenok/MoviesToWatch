@@ -32,7 +32,7 @@
       background-color: transparent;
       text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.7s ease;
+      transition: all 0.4s ease;
       &:hover {
         letter-spacing: 2px;
         transform: scale(1.03);
@@ -105,19 +105,15 @@ input[type="text"]{
   bottom: 0;
 }
 .input-border-style:focus ~ .focus-border:before,
-.input-border-style:focus ~ .focus-border:after,
-.has-content.input-border-style ~ .focus-border:before,
-.has-content.input-border-style ~ .focus-border:after{
+.input-border-style:focus ~ .focus-border:after{
   width: 100%;
   transition: 0.3s;}
 .input-border-style:focus ~ .focus-border i:before,
-.input-border-style:focus ~ .focus-border i:after,
-.has-content.input-border-style ~ .focus-border i:before,
-.has-content.input-border-style ~ .focus-border i:after{
+.input-border-style:focus ~ .focus-border i:after{
   height: 100%;
   transition: 0.4s;
 }
-.input-border-style ~ label{
+.label{
   position: absolute;
   left: 14px;
   width: 100%;
@@ -128,7 +124,16 @@ input[type="text"]{
   z-index: -1;
 
 }
-.input-border-style:focus ~ label, .has-content.input-border-style ~ label{
+.input-border-style:focus ~ .label{
+  top: -18px;
+  left: 0;
+  font-size: 12px;
+  color: $input-label-border-color;
+  transition: 0.3s;
+}
+
+.label-has-content{
+
   top: -18px;
   left: 0;
   font-size: 12px;
