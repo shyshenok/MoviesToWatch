@@ -53,14 +53,14 @@ export class FilmListComponent implements OnInit {
           this.displayFilmList = this.filmList;
         });
 
-      this.httpClient.post('https://api.themoviedb.org/4/auth/request_token',
-        {headers:{"Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTllMmIwYjQ1ZTU0ZTU0NzM3YjM0ZTY0ZGQ4NDNiMyIsInN1YiI6IjVhNzIyYjU5YzNhMzY4NjA3NDAxMGMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXlbc-LYSK5-OVqSkfoRNExGX279hDJpUKMfrVc7lnI',
-                  "Content-Type": "application/json;charset=utf-8"},
-        // 'api_key': this.apiKey,
-        // 'access_token': this.apiToken
-      }).subscribe(data =>{
-        console.log(data);
-      })
+      // this.httpClient.post('https://api.themoviedb.org/4/auth/request_token',
+      //   {headers:{"Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTllMmIwYjQ1ZTU0ZTU0NzM3YjM0ZTY0ZGQ4NDNiMyIsInN1YiI6IjVhNzIyYjU5YzNhMzY4NjA3NDAxMGMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXlbc-LYSK5-OVqSkfoRNExGX279hDJpUKMfrVc7lnI',
+      //             "Content-Type": "application/json;charset=utf-8"},
+      //   // 'api_key': this.apiKey,
+      //   // 'access_token': this.apiToken
+      // }).subscribe(data =>{
+      //   console.log(data);
+      // })
     });
 
   }
@@ -91,8 +91,6 @@ export class FilmListComponent implements OnInit {
   }
 
   onTabChange(tab:number) {
-    console.log('tab ' + tab);
-
     if(tab === 0) {
       this.displayFilmList = this.filmList;
       return;

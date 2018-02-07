@@ -1,13 +1,13 @@
 <div class="film-list">
   <app-exit-button></app-exit-button>
 
+  <a class="btn"  (click)="back()">Back</a>
   <div class="content">
     <app-textarea></app-textarea>
     <div class="control-button-wrapper">
       <div class="control-button">
         <a class="btn" (click)="doRandomize(displayFilmList)">Random</a>
         <a class="btn"  (click)="doSynchronize(displayFilmList)">sync IMDB</a>
-        <a class="btn"  (click)="back()">Back</a>
       </div>
       <p class="response">Random result: {{this.num}} {{this.randChoise}}</p>
     </div>
