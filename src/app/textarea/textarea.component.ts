@@ -1,7 +1,7 @@
 import {Component, Injectable, Input, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
-import {WunderlistTasks} from "../models/wunderlistTasks";
+import {WunderlistTask} from "../models/wunderlistTasks";
 
 @Injectable()
 
@@ -24,7 +24,6 @@ export class TextareaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.listId);
   }
 
   focusFunction(isFocused) {
@@ -40,22 +39,23 @@ export class TextareaComponent implements OnInit {
 
   }
 
-  addNewFilm(film) {
-    console.log(film);
+  addNewFilm() {
+    console.log("string "+this.inputValue);
+    console.log("id "+this.listId);
+
+
     this.headerToken = this.sharedServiceToken.getServiceToken().access_token;
 
+    let body = `{\"list_id\":${this.listId}, \"title\":\"${this.inputValue}\"}`;
 
-    let urlSearchParams = new URLSearchParams();
-    urlSearchParams.append('list_id' , this.listId);
-    urlSearchParams.append('title' , this.inputValue);
-    let body = urlSearchParams.toString();
-
-    this.http.post<WunderlistTasks[]>('https://a.wunderlist.com/api/v1/tasks', body,
-      {headers: {'X-Access-Token': this.headerToken,
-                  'X-Client-ID': this.clientId}
+    this.http.post<WunderlistTask>('https://a.wunderlist.com/api/v1/tasks', body ,{
+      headers: {'X-Access-Token': this.headerToken,
+                   'X-Client-ID': this.clientId,
+                    'Content-Type': 'application/json'
+      }
       }).subscribe(data => {
         console.log(data);
-    })
+    });
   }
 
 

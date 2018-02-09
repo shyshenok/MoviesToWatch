@@ -3,7 +3,7 @@
  */
 
 
-export interface WunderlistTasks {
+export interface WunderlistTask {
   id: number;
   assignee_id: number;
   created_at: string;

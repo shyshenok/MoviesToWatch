@@ -1,7 +1,7 @@
 import {Component, Injectable, Input, OnInit} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
-import {WunderlistTasks} from "../models/wunderlistTasks";
+import {WunderlistTask} from "../models/wunderlistTasks";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MovieObject} from "../models/movie";
 
@@ -25,8 +25,8 @@ export class FilmListComponent implements OnInit {
   apiToken: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTllMmIwYjQ1ZTU0ZTU0NzM3YjM0ZTY0ZGQ4NDNiMyIsInN1YiI6IjVhNzIyYjU5YzNhMzY4NjA3NDAxMGMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXlbc-LYSK5-OVqSkfoRNExGX279hDJpUKMfrVc7lnI'
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
-  filmList: WunderlistTasks[];
-  displayFilmList: WunderlistTasks[];
+  filmList: WunderlistTask[];
+  displayFilmList: WunderlistTask[];
   num: number;
   randChoise: string;
 
@@ -47,7 +47,7 @@ export class FilmListComponent implements OnInit {
       let params = new HttpParams();
       params = params.append('list_id', qParams["list_id"]);
 
-      this.httpClient.get<WunderlistTasks[]>("https://a.wunderlist.com/api/v1/tasks",
+      this.httpClient.get<WunderlistTask[]>("https://a.wunderlist.com/api/v1/tasks",
         {headers: {'Accept-Language': 'ru-RU','Content-Language': 'ru-RU','X-Access-Token': this.headerToken, 'X-Client-ID': this.clientId},
         params: params},)
         .subscribe(data => {
@@ -69,7 +69,7 @@ export class FilmListComponent implements OnInit {
 
   }
 
-  doRandomize(array:Array<WunderlistTasks>) {
+  doRandomize(array:Array<WunderlistTask>) {
     let min = 0;
     let max = array.length-1;
     this.num = Math.floor(Math.random() * (max - min + 1)) + min+1;
@@ -79,7 +79,7 @@ export class FilmListComponent implements OnInit {
 
   }
 
-  doSynchronize(array:Array<WunderlistTasks>) {
+  doSynchronize(array:Array<WunderlistTask>) {
     let titleArray = array.map(o => o.title);
 
     titleArray.forEach(title => {
@@ -110,10 +110,6 @@ export class FilmListComponent implements OnInit {
           return true;
       }
     })
-  }
-
-  catchId() {
-
   }
 
 
