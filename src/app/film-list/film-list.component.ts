@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, Injectable, Input, OnInit} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTasks} from "../models/wunderlistTasks";
@@ -19,6 +19,8 @@ export class FilmListComponent implements OnInit {
 
   // apiKey:string = '5942dc95';
   // apiToken:string = 'f45b71a5-e745-4965-8154-75f150b61744';
+
+  listId:number;
   apiKey: string = 'd59e2b0b45e54e54737b34e64dd843b3';
   apiToken: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTllMmIwYjQ1ZTU0ZTU0NzM3YjM0ZTY0ZGQ4NDNiMyIsInN1YiI6IjVhNzIyYjU5YzNhMzY4NjA3NDAxMGMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXlbc-LYSK5-OVqSkfoRNExGX279hDJpUKMfrVc7lnI'
   headerToken: string;
@@ -37,6 +39,7 @@ export class FilmListComponent implements OnInit {
 
 
     this.route.queryParams.subscribe(qParams => {
+      this.listId = qParams['list_id'];
 
       this.headerToken = this.sharedServiceToken.getServiceToken().access_token;
 
@@ -107,6 +110,10 @@ export class FilmListComponent implements OnInit {
           return true;
       }
     })
+  }
+
+  catchId() {
+
   }
 
 
