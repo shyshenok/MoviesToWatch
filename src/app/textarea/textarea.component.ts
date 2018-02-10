@@ -1,4 +1,4 @@
-import {Component, Injectable, Input, OnInit} from '@angular/core';
+import {Component, ContentChildren, EventEmitter, Injectable, Input, OnInit, Output, QueryList} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTask} from "../models/wunderlistTasks";
@@ -17,6 +17,9 @@ export class TextareaComponent implements OnInit {
   @Input() listId:number;
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
+  @Output() newFilmInList = new EventEmitter<WunderlistTask>();
+
+  // @ContentChildren(TextareaComponent) film: QueryList<TextareaComponent>;
 
 
   constructor(private http: HttpClient,
@@ -40,9 +43,6 @@ export class TextareaComponent implements OnInit {
   }
 
   addNewFilm() {
-    console.log("string "+this.inputValue);
-    console.log("id "+this.listId);
-
 
     this.headerToken = this.sharedServiceToken.getServiceToken().access_token;
 
@@ -54,10 +54,9 @@ export class TextareaComponent implements OnInit {
                     'Content-Type': 'application/json'
       }
       }).subscribe(data => {
-        console.log(data);
+        this.newFilmInList.emit(data);
     });
   }
-
 
 
 }

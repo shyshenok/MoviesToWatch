@@ -29,6 +29,7 @@ export class FilmListComponent implements OnInit {
   displayFilmList: WunderlistTask[];
   num: number;
   randChoise: string;
+  tabNumber: number;
 
   constructor(private httpClient: HttpClient,
               private sharedServiceToken: SharedTokenService,
@@ -95,13 +96,15 @@ export class FilmListComponent implements OnInit {
   }
 
   onTabChange(tab:number) {
-    if(tab === 0) {
+    console.log('onTabChange');
+    this.tabNumber = tab;
+    if(this.tabNumber === 0) {
       this.displayFilmList = this.filmList;
       return;
     }
 
     this.displayFilmList = this.filmList.filter(film => {
-      switch (tab){
+      switch (this.tabNumber){
         case 1:
           return film.created_by_id === 53342247;
         case  2:
@@ -110,6 +113,10 @@ export class FilmListComponent implements OnInit {
           return true;
       }
     })
+  }
+
+  addFilm(film:WunderlistTask) {
+    this.filmList.push(film);
   }
 
 
