@@ -1,5 +1,6 @@
 .nav {
   padding: 0;
+  margin-bottom: 0;
   border-bottom: 1px solid #4d78a0; }
   .nav li {
     display: inline-block;

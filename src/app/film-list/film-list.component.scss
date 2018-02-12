@@ -5,7 +5,6 @@
 
 
 .film-list {
-  height: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-areas:
@@ -16,7 +15,7 @@
     align-self: center;
     justify-self: center;
     margin: 20px 0 60px;
-
+    width: 600px;
     app-textarea {
       width: 100%;
       flex-flow: row;
@@ -38,12 +37,36 @@
   }
 
   .list-of-film {
-    ol {
-      padding: 16px;
+    ul {
+      padding: 0;
       min-height: 150px;
+      margin: 0;
+      list-style: none;
       li {
+        background-color: rgba($list-background-color, 0.6);
+        background-clip: padding-box;
+        border: 2px solid transparent;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        &:hover {
+          background-color: rgba($bottom-text-shadow-color, 0.3);
+          color: #fff;
+          text-shadow: 1px 1px 0 $bottom-text-shadow-color;
+          a {
+            color: #fff;
+          }
+        }
         a {
           word-break: break-all;
+          display: inline-block;
+          padding: 8px 10px;
+          width:100%;
+        }
+        span {
+          padding: 0 10px;
         }
       }
     }
