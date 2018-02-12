@@ -1,11 +1,22 @@
-<app-exit-button class="exit" (click)="goToAuthorization()">
-  <app-button [buttonTitle]="'Exit'"></app-button>
-</app-exit-button>
-<ul class="wunderlist">
-  <li *ngFor="let list of wunderList">
-    <a [routerLink]="['/list', list.title]"
-         [queryParams]="{'list_id': list.id}">{{list.title}}</a>
-  </li>
-</ul>
+
+<div class="wunderlist-component">
+  <app-exit-button class="exit" (click)="goToAuthorization()">
+    <app-button [buttonTitle]="'Exit'"></app-button>
+  </app-exit-button>
+  <div class="content">
+    <div class="header">
+      <h2>Your lists</h2>
+    </div>
+    <ul class="wunderlist">
+      <li *ngFor="let list of wunderList">
+        <a [routerLink]="['/list', list.title]"
+           [queryParams]="{'list_id': list.id}">{{list.title}}</a>
+        <i>0</i>
+      </li>
+    </ul>
+  </div>
+
+
+</div>
 
 <router-outlet></router-outlet>

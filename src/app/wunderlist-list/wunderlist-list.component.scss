@@ -1,0 +1,86 @@
+
+
+@import "../../variables";
+@import '../mixins';
+
+
+.wunderlist-component {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    ". a a b"
+    ". a a .";
+
+  .content {
+    background-color: rgba($list-background-color, 0.6);
+    border: 1px solid #fff;
+    grid-area: a;
+    align-self: center;
+    justify-self: center;
+    padding: 16px 0;
+    min-height: 150px;
+    min-width: 500px;
+    color: $list-font-color-on-white-bg;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    .header {
+      width: 100%;
+      h2 {
+        text-align: center;
+        padding: 20px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        box-shadow: inset 0px -1px 0px $list-font-color-on-white-bg,
+                    inset 0px -5px 0px $box-shadow-line-at-header,//(depend of bg opacity. if change bg, you have to change this color)
+                    inset 0px -6px 0px $list-font-color-on-white-bg;
+      }
+    }
+
+
+    .wunderlist{
+      list-style: none;
+      width:100%;
+      padding: 0;
+      li {
+        padding: 0 50px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        &:hover {
+          background-color: rgba($bottom-text-shadow-color, 0.3);
+          color: #fff;
+          text-shadow: 1px 1px 0 $bottom-text-shadow-color;
+          a {
+            color: #fff;
+            letter-spacing: 2px;
+          }
+        }
+        a {
+          word-break: break-all;
+          text-decoration: none;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          transition: all 0.3s ease;
+
+          width: 100%;
+          color: $list-font-color-on-white-bg;
+        }
+        a, i {
+          padding: 8px 0;
+        }
+      }
+    }
+  }
+
+
+  .exit {
+    grid-area: b;
+    align-self: flex-start;
+    justify-content: flex-start;
+    margin: 20px 40px;
+  }
+}

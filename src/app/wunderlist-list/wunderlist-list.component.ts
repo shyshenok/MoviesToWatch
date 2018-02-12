@@ -8,7 +8,7 @@ import {WunderList} from "../models/wunderList";
 @Component({
   selector: 'app-wunderlist-list',
   templateUrl: './wunderlist-list.component.html',
-  styleUrls: ['./wunderlist-list.component.css']
+  styleUrls: ['./wunderlist-list.component.scss']
 })
 export class WunderlistListComponent implements OnInit {
 
@@ -28,7 +28,10 @@ export class WunderlistListComponent implements OnInit {
     this.httpClient.get<WunderList>("https://a.wunderlist.com/api/v1/lists", {headers: {'X-Access-Token': this.headerToken, 'X-Client-ID': this.clientId}})
       .subscribe(data => {
         this.wunderList = data;
-    });
+        console.log(this.wunderList);
+
+      });
+
 
   }
 
