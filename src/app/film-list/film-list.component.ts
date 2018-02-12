@@ -30,6 +30,8 @@ export class FilmListComponent implements OnInit {
   num: number;
   randChoise: string;
   tabNumber: number;
+  wunderlistLength: number;
+
 
   constructor(private httpClient: HttpClient,
               private sharedServiceToken: SharedTokenService,

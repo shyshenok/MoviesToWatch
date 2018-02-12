@@ -9,12 +9,14 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-areas:
-    "c a a b"
+    "c . . b"
     ". a a .";
   .content {
     grid-area: a;
     align-self: center;
     justify-self: center;
+    margin: 20px 0 60px;
+
     app-textarea {
       width: 100%;
       flex-flow: row;

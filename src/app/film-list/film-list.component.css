@@ -2,11 +2,12 @@
   height: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-areas: "c a a b" ". a a ."; }
+  grid-template-areas: "c . . b" ". a a ."; }
   .film-list .content {
     grid-area: a;
     align-self: center;
-    justify-self: center; }
+    justify-self: center;
+    margin: 20px 0 60px; }
     .film-list .content app-textarea {
       width: 100%;
       flex-flow: row;
@@ -63,7 +64,7 @@
           -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
           border: 1px solid transparent;
-          bottom: 0px;
+          bottom: 0;
           content: " ";
           display: block;
           margin: 0 auto;
