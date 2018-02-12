@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-areas:
-    ". a a b"
+    ". . . b"
     ". a a .";
 
   .content {
@@ -18,8 +18,7 @@
     grid-area: a;
     align-self: center;
     justify-self: center;
-    padding: 16px 0;
-    min-height: 150px;
+    margin: 20px 0 60px;
     min-width: 500px;
     color: $list-font-color-on-white-bg;
     display: flex;
@@ -65,12 +64,11 @@
           letter-spacing: 0.5px;
           text-transform: uppercase;
           transition: all 0.3s ease;
-
           width: 100%;
           color: $list-font-color-on-white-bg;
         }
         a, i {
-          padding: 8px 0;
+          padding: 20px 0;
         }
       }
     }
