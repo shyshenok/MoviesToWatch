@@ -1,13 +1,10 @@
 <div class="film-list">
-  <app-exit-button></app-exit-button>
-  <div class="back-btn-container">
-    <div class="back-btn"  (click)="back()">
-      <svg>
-        <rect x="0" y="0" fill="none" width="100%" height="100%"/>
-      </svg>
-      Back
-    </div>
-  </div>
+  <app-exit-button class="exit" (click)="goToAuthorization()">
+    <app-button [buttonTitle]="'Exit'"></app-button>
+  </app-exit-button>
+  <app-exit-button class="back" (click)="back()">
+    <app-button [buttonTitle]="'Back'"></app-button>
+  </app-exit-button>
   <div class="content">
     <app-textarea [listId] = 'listId' (newFilmInList)="addFilm($event)"></app-textarea>
     <div class="control-button-wrapper">

@@ -119,5 +119,9 @@ export class FilmListComponent implements OnInit {
     this.filmList.push(film);
   }
 
+  goToAuthorization() {
+    localStorage.clear();
+    this.router.navigate(['']);
+  }
 
 }

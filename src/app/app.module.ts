@@ -10,10 +10,11 @@ import {HttpClientModule} from "@angular/common/http";
 import { FilmListComponent } from './film-list/film-list.component';
 import { WunderlistListComponent } from './wunderlist-list/wunderlist-list.component';
 import {SharedTokenService} from "./services/shared-token.service";
-import { ExitButtonComponent } from './exit-button/exit-button.component';
+import { TemplateButtonComponent } from './template-button/template-button.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tab/tab.component';
+import { ButtonComponent } from './button/button.component';
 
 
 
@@ -23,10 +24,11 @@ import { TabComponent } from './tab/tab.component';
     AuthorizationComponent,
     FilmListComponent,
     WunderlistListComponent,
-    ExitButtonComponent,
+    TemplateButtonComponent,
     TextareaComponent,
     TabsComponent,
-    TabComponent
+    TabComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,

@@ -3,15 +3,11 @@
 @import '../mixins';
 
 
-.exit-button {
+.template-button {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:
-    ". a"
-    ". a";
+  grid-template-columns: 1fr;
   .btn {
-    grid-area: a;
-    justify-self: self-start;
+    justify-self: center;
     @include button((12px 20px), $button-color, 18px);
     @include svg-rectangle((150, 0), 3, 0.7s);
     &:hover {

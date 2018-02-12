@@ -7,12 +7,13 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class TabComponent implements OnInit {
 
+  @Input('tabTitle') title: number;
+  @Input() active = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  @Input('tabTitle') title: number;
-  @Input() active = false;
 
 }
