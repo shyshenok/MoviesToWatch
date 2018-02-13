@@ -1,15 +1,10 @@
-
-
 @import "../../variables";
 @import '../mixins';
-
 
 .film-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-areas:
-    "c . . b"
-    ". a a .";
+  grid-template-areas: "c . . b" ". a a .";
   .content {
     grid-area: a;
     align-self: center;
@@ -51,22 +46,68 @@
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
-        &:hover {
-          background-color: rgba($bottom-text-shadow-color, 0.3);
-          color: #fff;
-          text-shadow: 1px 1px 0 $bottom-text-shadow-color;
+        justify-content: space-between;
+        .separator {
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          width: 100%;
+
+          label {
+            width: 100%;
+          }
           a {
-            color: #fff;
+            word-break: break-all;
+            display: inline-block;
+            padding: 8px 10px;
+            width: 100%;
+          }
+          span {
+            padding: 0 10px;
           }
         }
-        a {
-          word-break: break-all;
-          display: inline-block;
-          padding: 8px 10px;
-          width:100%;
+        &:hover {
+          background-color: rgba($bottom-text-shadow-color, 0.3);
+          color: $list-background-color;
+          text-shadow: 1px 1px 0 $bottom-text-shadow-color;
+          a {
+            color: $list-background-color;
+          }
+          input[type=checkbox] {
+            &:after {
+              color: $list-background-color;
+              border: 1px solid $list-background-color;
+            }
+          }
         }
-        span {
-          padding: 0 10px;
+
+        input[type=checkbox] {
+          width: 25px;
+          height: 25px;
+          cursor: pointer;
+          font-size: 17px;
+          margin: 0 20px;
+          visibility: hidden;
+
+          &:after {
+            content: " ";
+            display: inline-block;
+            color: $bottom-text-shadow-color;
+            width: 23px;
+            height: 23px;
+            visibility: visible;
+            border: 1px solid $bottom-text-shadow-color;
+
+          }
+          &:checked {
+            &:after {
+              content: "\2714";
+              font-weight: bold;
+              text-align: center;
+              text-shadow: 1px 1px 0 $bottom-text-shadow-color;
+
+            }
+          }
         }
       }
     }
@@ -75,9 +116,7 @@
   .control-button-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-      "a a a"
-      "b b b";
+    grid-template-areas: "a a a" "b b b";
 
     .control-button {
       grid-area: a;
@@ -136,3 +175,5 @@
     }
   }
 }
+
+

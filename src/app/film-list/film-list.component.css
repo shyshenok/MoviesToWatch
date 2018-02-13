@@ -35,20 +35,51 @@
       cursor: pointer;
       display: flex;
       flex-flow: row nowrap;
-      align-items: center; }
+      align-items: center;
+      justify-content: space-between; }
+      .film-list .list-of-film ul li .separator {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        width: 100%; }
+        .film-list .list-of-film ul li .separator label {
+          width: 100%; }
+        .film-list .list-of-film ul li .separator a {
+          word-break: break-all;
+          display: inline-block;
+          padding: 8px 10px;
+          width: 100%; }
+        .film-list .list-of-film ul li .separator span {
+          padding: 0 10px; }
       .film-list .list-of-film ul li:hover {
         background-color: rgba(75, 112, 155, 0.3);
-        color: #fff;
+        color: #ffffff;
         text-shadow: 1px 1px 0 #4b709b; }
         .film-list .list-of-film ul li:hover a {
-          color: #fff; }
-      .film-list .list-of-film ul li a {
-        word-break: break-all;
-        display: inline-block;
-        padding: 8px 10px;
-        width: 100%; }
-      .film-list .list-of-film ul li span {
-        padding: 0 10px; }
+          color: #ffffff; }
+        .film-list .list-of-film ul li:hover input[type=checkbox]:after {
+          color: #ffffff;
+          border: 1px solid #ffffff; }
+      .film-list .list-of-film ul li input[type=checkbox] {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        font-size: 17px;
+        margin: 0 20px;
+        visibility: hidden; }
+        .film-list .list-of-film ul li input[type=checkbox]:after {
+          content: " ";
+          display: inline-block;
+          color: #4b709b;
+          width: 23px;
+          height: 23px;
+          visibility: visible;
+          border: 1px solid #4b709b; }
+        .film-list .list-of-film ul li input[type=checkbox]:checked:after {
+          content: "\2714";
+          font-weight: bold;
+          text-align: center;
+          text-shadow: 1px 1px 0 #4b709b; }
   .film-list .control-button-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

@@ -22,8 +22,13 @@
     <div class="list-of-film">
       <ul>
         <li *ngFor="let film of displayFilmList; index as i">
-         <span>{{i+1}}.</span>
-          <a>{{film.title}}</a>
+          <div class="separator">
+            <span>{{i+1}}.</span>
+            <label for="'watched' + {{i}}">
+              <a>{{film.title}}</a>
+            </label>
+          </div>
+          <input type="checkbox" id="'watched' + {{i}}">
         </li>
       </ul>
     </div>

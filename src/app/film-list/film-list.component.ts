@@ -126,4 +126,8 @@ export class FilmListComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  done() {
+    console.log("done")
+  }
+
 }
