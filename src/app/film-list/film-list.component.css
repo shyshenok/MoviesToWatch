@@ -46,7 +46,8 @@
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
-        width: 100%; }
+        width: 100%;
+        color: #4b709b; }
         .film-list .list-of-film ul li .separator label {
           width: 100%; }
         .film-list .list-of-film ul li .separator a {
@@ -60,7 +61,7 @@
         background-color: rgba(75, 112, 155, 0.3);
         color: #ffffff;
         text-shadow: 1px 1px 0 #4b709b; }
-        .film-list .list-of-film ul li:hover a {
+        .film-list .list-of-film ul li:hover a, .film-list .list-of-film ul li:hover span {
           color: #ffffff; }
         .film-list .list-of-film ul li:hover input[type=checkbox]:after {
           color: #ffffff;

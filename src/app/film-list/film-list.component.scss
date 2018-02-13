@@ -60,7 +60,7 @@
           flex-flow: row nowrap;
           align-items: center;
           width: 100%;
-
+          color: $bottom-text-shadow-color;
           label {
             width: 100%;
           }
@@ -78,7 +78,7 @@
           background-color: rgba($bottom-text-shadow-color, 0.3);
           color: $list-background-color;
           text-shadow: 1px 1px 0 $bottom-text-shadow-color;
-          a {
+          a, span {
             color: $list-background-color;
           }
           input[type=checkbox] {

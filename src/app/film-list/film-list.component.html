@@ -30,7 +30,7 @@
               <a>{{film.title}}</a>
             </label>
           </div>
-          <input type="checkbox" id="'watched' + {{i}}">
+          <input type="checkbox" id="'watched' + {{i}}" (change)="moveToWatchedFilms(i)">
         </li>
       </ul>
     </div>
