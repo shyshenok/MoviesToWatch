@@ -1,7 +1,7 @@
 .film-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-areas: "c . . b" ". a a ."; }
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "c d b" ". a ."; }
   .film-list .content {
     grid-area: a;
     align-self: center;
@@ -19,6 +19,11 @@
     margin: 20px 40px; }
   .film-list .back {
     grid-area: c;
+    align-self: flex-start;
+    justify-content: flex-end;
+    margin: 20px 40px; }
+  .film-list .sync {
+    grid-area: d;
     align-self: flex-start;
     justify-content: flex-end;
     margin: 20px 40px; }
@@ -45,7 +50,7 @@
         .film-list .list-of-film ul li .separator label {
           width: 100%; }
         .film-list .list-of-film ul li .separator a {
-          word-break: break-all;
+          word-break: break-word;
           display: inline-block;
           padding: 8px 10px;
           width: 100%; }

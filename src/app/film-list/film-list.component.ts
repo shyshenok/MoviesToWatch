@@ -98,7 +98,6 @@ export class FilmListComponent implements OnInit {
   }
 
   onTabChange(tab:number) {
-    console.log('onTabChange');
     this.tabNumber = tab;
     if(this.tabNumber === 0) {
       this.displayFilmList = this.filmList;
@@ -126,8 +125,5 @@ export class FilmListComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  done() {
-    console.log("done")
-  }
 
 }

@@ -3,8 +3,8 @@
 
 .film-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-areas: "c . . b" ". a a .";
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "c d b" ". a .";
   .content {
     grid-area: a;
     align-self: center;
@@ -30,6 +30,14 @@
     justify-content: flex-end;
     margin: 20px 40px;
   }
+
+  .sync {
+    grid-area: d;
+    align-self: flex-start;
+    justify-content: flex-end;
+    margin: 20px 40px;
+  }
+
 
   .list-of-film {
     ul {
@@ -57,7 +65,7 @@
             width: 100%;
           }
           a {
-            word-break: break-all;
+            word-break: break-word;
             display: inline-block;
             padding: 8px 10px;
             width: 100%;
