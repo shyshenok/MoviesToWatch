@@ -15,6 +15,7 @@ import { TextareaComponent } from './textarea/textarea.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tab/tab.component';
 import { ButtonComponent } from './button/button.component';
+import { SyncFilmComponent } from './sync-film/sync-film.component';
 
 
 
@@ -28,7 +29,8 @@ import { ButtonComponent } from './button/button.component';
     TextareaComponent,
     TabsComponent,
     TabComponent,
-    ButtonComponent
+    ButtonComponent,
+    SyncFilmComponent
   ],
   imports: [
     BrowserModule,
