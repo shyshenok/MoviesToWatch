@@ -44,19 +44,19 @@
 }
 
 input[type="text"]{
-  font: 15px/24px 'Muli', sans-serif;
   color: #333;
   width: 100%;
   box-sizing: border-box;
-  letter-spacing: 1px;}
+  letter-spacing: 1px;
+  transition: 1s ease all;
+}
 
 .input-effect{
   position: relative;
   z-index: 0;
 }
-/* necessary to give position: relative to parent. */
+
 input[type="text"]{
-  font: 15px/24px "Lato", Arial, sans-serif;
   color: #fdfdfd;
   width: 100%;
   box-sizing: border-box;

@@ -5,7 +5,7 @@
   <app-exit-button class="back" (click)="back()">
     <app-button [buttonTitle]="'Back'"></app-button>
   </app-exit-button>
-  <app-exit-button class="sync" (click)="doSynchronize(displayFilmList)">
+  <app-exit-button class="sync"  [routerLink]="['/syncIMDB']" (click)="doSynchronize(displayFilmList)">
     <app-button [buttonTitle]="'sync IMDB'"></app-button>
   </app-exit-button>
   <div class="content">

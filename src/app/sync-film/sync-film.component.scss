@@ -1,21 +1,33 @@
+
+
+
+@import "../../variables";
+@import '../mixins';
+
+
 .sync-component {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-areas: "c d b" ". a ."; }
-  .sync-component .exit {
+  grid-template-areas: "c d b" ". a .";
+
+  .exit {
     grid-area: b;
     align-self: flex-start;
     justify-content: flex-start;
-    margin: 20px 40px; }
-  .sync-component .back {
+    margin: 20px 40px;
+  }
+
+  .back {
     grid-area: c;
     align-self: flex-start;
     justify-content: flex-end;
-    margin: 20px 40px; }
-  .sync-component .sync {
+    margin: 20px 40px;
+  }
+
+  .sync {
     grid-area: d;
     align-self: flex-start;
     justify-content: flex-end;
-    margin: 20px 40px; }
-
-/*# sourceMappingURL=sync-film.component.css.map */
+    margin: 20px 40px;
+  }
+}

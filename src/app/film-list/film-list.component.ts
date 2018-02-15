@@ -7,17 +7,16 @@ import {MovieObject} from "../models/movie";
 import {TextareaComponent} from "../textarea/textarea.component";
 
 
-
 @Injectable()
 
 @Component({
   selector: 'app-film-list',
   templateUrl: './film-list.component.html',
-  styleUrls: ['./film-list.component.scss']
+  styleUrls: ['./film-list.component.scss'],
 })
 
 export class FilmListComponent implements OnInit {
-
+  state:string = 'small';
   listId:number;
   apiKey: string = 'd59e2b0b45e54e54737b34e64dd843b3';
   apiToken: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTllMmIwYjQ1ZTU0ZTU0NzM3YjM0ZTY0ZGQ4NDNiMyIsInN1YiI6IjVhNzIyYjU5YzNhMzY4NjA3NDAxMGMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXlbc-LYSK5-OVqSkfoRNExGX279hDJpUKMfrVc7lnI'
@@ -28,6 +27,7 @@ export class FilmListComponent implements OnInit {
   num: number;
   randChoise: string;
   tabNumber: number;
+  ifChange: boolean = false;
   @ViewChild(TextareaComponent) textareaComponent:TextareaComponent;
 
   constructor(private httpClient: HttpClient,
@@ -61,6 +61,8 @@ export class FilmListComponent implements OnInit {
 
   }
 
+
+
   doRandomize(array:Array<WunderlistTask>) {
     let min = 0;
     let max = array.length-1;
@@ -69,14 +71,14 @@ export class FilmListComponent implements OnInit {
   }
 
   doSynchronize(array:Array<WunderlistTask>) {
-    let titleArray = array.map(o => o.title);
-
-    titleArray.forEach(title => {
-      this.httpClient.get<MovieObject>('http://localhost:8080/apifilms/imdb/idIMDB?title='+title+'token='+this.apiToken+'&format=json&language=ru-RU&filter=2&imit=1')
-        .subscribe(data => {
-        console.log(data);
-      });
-    });
+    // let titleArray = array.map(o => o.title);
+    //
+    // titleArray.forEach(title => {
+    //   this.httpClient.get<MovieObject>('http://localhost:8080/apifilms/imdb/idIMDB?title='+title+'token='+this.apiToken+'&format=json&language=ru-RU&filter=2&imit=1')
+    //     .subscribe(data => {
+    //     console.log(data);
+    //   });
+    // });
   }
 
   back() {
@@ -131,13 +133,16 @@ export class FilmListComponent implements OnInit {
     });
 
     setTimeout( () => {
-        this.removeMovieFromList(element);
-    }, 700);
+      this.removeMovieFromList(element);
+    }, 2000);
   }
 
   removeMovieFromList(indexFilm) {
+    this.ifChange = true;
+    if( this.ifChange === true) {
+      this.state = 'large';
+    }
     this.filmList.splice(indexFilm, 1);
-
   }
 
 
