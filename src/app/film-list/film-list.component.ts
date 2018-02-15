@@ -1,10 +1,11 @@
-import {Component, Injectable, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Injectable, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTask} from "../models/wunderlistTasks";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MovieObject} from "../models/movie";
 import {TextareaComponent} from "../textarea/textarea.component";
+import {SharedMovieObjectService} from "../services/shared-movie-object.service";
 
 
 @Injectable()
@@ -18,7 +19,6 @@ import {TextareaComponent} from "../textarea/textarea.component";
 export class FilmListComponent implements OnInit {
   listId:number;
   apiKey: string = 'd59e2b0b45e54e54737b34e64dd843b3';
-  apiToken: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTllMmIwYjQ1ZTU0ZTU0NzM3YjM0ZTY0ZGQ4NDNiMyIsInN1YiI6IjVhNzIyYjU5YzNhMzY4NjA3NDAxMGMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXlbc-LYSK5-OVqSkfoRNExGX279hDJpUKMfrVc7lnI'
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
   filmList: WunderlistTask[];
@@ -32,7 +32,8 @@ export class FilmListComponent implements OnInit {
   constructor(private httpClient: HttpClient,
               private sharedServiceToken: SharedTokenService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private sharedImdbMovieObj: SharedMovieObjectService) { }
 
   ngOnInit() {
 
@@ -71,9 +72,10 @@ export class FilmListComponent implements OnInit {
     let titleArray = array.map(o => o.title);
 
     titleArray.forEach(title => {
-      this.httpClient.get('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+title.replace(" ", '+'))
+      this.httpClient.get<MovieObject>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+title.replace(" ", '+'))
         .subscribe(data => {
-        console.log(data);
+          this.sharedImdbMovieObj.imdbMovieObj = data;
+        console.log(this.sharedImdbMovieObj.imdbMovieObj);
       });
     });
   }

@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { AppRoutingModule } from './app-routing.module';
-import {HttpClientModule} from "@angular/common/http";
 import { FilmListComponent } from './film-list/film-list.component';
 import { WunderlistListComponent } from './wunderlist-list/wunderlist-list.component';
 import {SharedTokenService} from "./services/shared-token.service";
@@ -15,6 +15,7 @@ import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tab/tab.component';
 import { ButtonComponent } from './button/button.component';
 import { SyncFilmComponent } from './sync-film/sync-film.component';
+import {SharedMovieObjectService} from "./services/shared-movie-object.service";
 
 
 
@@ -37,7 +38,7 @@ import { SyncFilmComponent } from './sync-film/sync-film.component';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [SharedTokenService],
+  providers: [SharedTokenService, SharedMovieObjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
