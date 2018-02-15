@@ -1,69 +1,55 @@
+export interface BelongsToCollection {
+  id: number;
+  name: string;
+  poster_path: string;
+  backdrop_path: string;
+}
 
+export interface Genre {
+  id: number;
+  name: string;
+}
+
+export interface ProductionCompany {
+  name: string;
+  id: number;
+}
+
+export interface ProductionCountry {
+  iso_3166_1: string;
+  name: string;
+}
+
+export interface SpokenLanguage {
+  iso_639_1: string;
+  name: string;
+}
 
 export interface MovieObject {
-
-  data: Data;
-  about: About;
-}
-
-interface About {
-  version: string;
-  serverTime: string;
-}
-
-interface Data {
-  movies: Movie[];
-}
-
-interface Movie {
+  adult: boolean;
+  backdrop_path: string;
+  belongs_to_collection: BelongsToCollection;
+  budget: number;
+  genres: Genre[];
+  homepage: string;
+  id: number;
+  imdb_id: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  production_companies: ProductionCompany[];
+  production_countries: ProductionCountry[];
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  spoken_languages: SpokenLanguage[];
+  status: string;
+  tagline: string;
   title: string;
-  originalTitle: string;
-  year: string;
-  releaseDate: string;
-  directors: Director[];
-  writers: Director[];
-  runtime: string;
-  urlPoster: string;
-  countries: string[];
-  languages: string[];
-  genres: string[];
-  plot: string;
-  simplePlot: string;
-  idIMDB: string;
-  urlIMDB: string;
-  rating: string;
-  metascore: string;
-  rated: string;
-  votes: string;
-  type: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+
 }
-
-interface Director {
-  name: string;
-  id: string;
-}
-
-  // title: string;
-  // _year_data: string;
-  // rated: string;
-  // released: string;
-  // runtime: string;
-  // genres: string;
-  // director: string;
-  // writer: string;
-  // actors: string;
-  // plot: string;
-  // languages: string;
-  // country: string;
-  // awards: string;
-  // poster: string;
-  // metascore: string;
-  // rating: string;
-  // votes: string;
-  // imdbid: string;
-  // type: string;
-  // response: string;
-  // series: boolean;
-  // imdburl: string;
-
-
