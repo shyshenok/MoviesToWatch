@@ -110,9 +110,31 @@ export class FilmListComponent implements OnInit {
   }
 
   moveToWatchedFilms(element) {
+    console.log(element);
     let currentElRevision = this.filmList[element].revision;
+    let currentElId = this.filmList[element].id;
+    let completed = true;
 
     console.log(currentElRevision);
+    let body = `{\"revision\":${currentElRevision}, \"completed\":${completed}}`;
+
+    this.httpClient.patch<WunderlistTask>('https://a.wunderlist.com/api/v1/tasks/'+ currentElId, body ,{
+      headers: {'X-Access-Token': this.headerToken,
+        'X-Client-ID': this.clientId,
+        'Content-Type': 'application/json'
+      }
+    }).subscribe(data => {
+      console.log(data);
+    });
+
+    setTimeout( () => {
+        this.removeMovieFromList(element);
+    }, 700);
+  }
+
+  removeMovieFromList(indexFilm) {
+    this.filmList.splice(indexFilm, 1);
+
   }
 
 
