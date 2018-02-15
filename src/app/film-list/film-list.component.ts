@@ -16,7 +16,6 @@ import {TextareaComponent} from "../textarea/textarea.component";
 })
 
 export class FilmListComponent implements OnInit {
-  state:string = 'small';
   listId:number;
   apiKey: string = 'd59e2b0b45e54e54737b34e64dd843b3';
   apiToken: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTllMmIwYjQ1ZTU0ZTU0NzM3YjM0ZTY0ZGQ4NDNiMyIsInN1YiI6IjVhNzIyYjU5YzNhMzY4NjA3NDAxMGMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pXlbc-LYSK5-OVqSkfoRNExGX279hDJpUKMfrVc7lnI'
@@ -61,8 +60,6 @@ export class FilmListComponent implements OnInit {
 
   }
 
-
-
   doRandomize(array:Array<WunderlistTask>) {
     let min = 0;
     let max = array.length-1;
@@ -71,14 +68,14 @@ export class FilmListComponent implements OnInit {
   }
 
   doSynchronize(array:Array<WunderlistTask>) {
-    // let titleArray = array.map(o => o.title);
-    //
-    // titleArray.forEach(title => {
-    //   this.httpClient.get<MovieObject>('http://localhost:8080/apifilms/imdb/idIMDB?title='+title+'token='+this.apiToken+'&format=json&language=ru-RU&filter=2&imit=1')
-    //     .subscribe(data => {
-    //     console.log(data);
-    //   });
-    // });
+    let titleArray = array.map(o => o.title);
+
+    titleArray.forEach(title => {
+      this.httpClient.get('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+title.replace(" ", '+'))
+        .subscribe(data => {
+        console.log(data);
+      });
+    });
   }
 
   back() {
