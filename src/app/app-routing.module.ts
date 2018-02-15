@@ -10,7 +10,6 @@ const appRoutes: Routes = [
   {path: '', component: AuthorizationComponent},
   {path: 'list', component: WunderlistListComponent},
   {path: 'list/:listName', component: FilmListComponent},
-  {path: 'syncIMDB', component: SyncFilmComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],

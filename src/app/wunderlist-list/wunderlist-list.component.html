@@ -10,7 +10,7 @@
     <ul class="wunderlist">
       <li *ngFor="let list of wunderList">
         <a [routerLink]="['/list', list.title]"
-           [queryParams]="{'list_id': list.id}">{{list.title}}</a>
+           [queryParams]="{'list_id': list.id, 'listName': list.title}">{{list.title}}</a>
         <i>0</i>
       </li>
     </ul>

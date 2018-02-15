@@ -17,7 +17,10 @@ import {SharedMovieObjectService} from "../services/shared-movie-object.service"
 })
 
 export class FilmListComponent implements OnInit {
+
+  ifClicked:boolean = false
   listId:number;
+  listName: string;
   apiKey: string = 'd59e2b0b45e54e54737b34e64dd843b3';
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
@@ -40,6 +43,7 @@ export class FilmListComponent implements OnInit {
 
     this.route.queryParams.subscribe(qParams => {
       this.listId = qParams['list_id'];
+      this.listName = qParams['listName'];
 
       this.headerToken = this.sharedServiceToken.getServiceToken().access_token;
 
@@ -69,6 +73,12 @@ export class FilmListComponent implements OnInit {
   }
 
   doSynchronize(array:Array<WunderlistTask>) {
+
+    if(!this.ifClicked) {
+      this.ifClicked = true;
+    } else {
+      this.ifClicked = false;
+    }
     let titleArray = array.map(o => o.title);
 
     titleArray.forEach(title => {

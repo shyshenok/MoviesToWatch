@@ -5,7 +5,7 @@
   <app-exit-button class="back" (click)="back()">
     <app-button [buttonTitle]="'Back'"></app-button>
   </app-exit-button>
-  <app-exit-button class="sync"  [routerLink]="['/syncIMDB']" (click)="doSynchronize(displayFilmList)">
+  <app-exit-button class="sync"  (click)="doSynchronize(displayFilmList)">
     <app-button [buttonTitle]="'sync IMDB'"></app-button>
   </app-exit-button>
   <div class="content">
@@ -17,24 +17,33 @@
       </div>
       <p class="response">Random result: {{this.num}} {{this.randChoise}}</p>
     </div>
-    <app-tabs (currentTab) = "onTabChange($event)">
-      <app-tab [tabTitle]="'All'"></app-tab>
-      <app-tab [tabTitle]="'Good films'"></app-tab>
-      <app-tab [tabTitle]="'Bad films'"></app-tab>
-    </app-tabs>
-    <div class="list-of-film">
-      <ul>
-        <li *ngFor="let film of displayFilmList; index as i">
-          <div class="separator">
-            <span>{{i+1}}.</span>
-            <label for="'watched' + {{i}}">
-              <a>{{film.title}}</a>
-            </label>
-          </div>
-          <input type="checkbox" id="'watched' + {{i}}" (change)="moveToWatchedFilms(i)">
-        </li>
-      </ul>
-    </div>
+    <div *ngIf="!ifClicked; then oneContent else twoContent"></div>
+    <ng-template #oneContent>
+      <app-tabs (currentTab) = "onTabChange($event)">
+        <app-tab [tabTitle]="'All'"></app-tab>
+        <app-tab [tabTitle]="'Good films'"></app-tab>
+        <app-tab [tabTitle]="'Bad films'"></app-tab>
+      </app-tabs>
+      <div class="list-of-film">
+        <ul>
+          <li *ngFor="let film of displayFilmList; index as i">
+            <div class="separator">
+              <span>{{i+1}}.</span>
+              <label for="'watched' + {{i}}">
+                <a>{{film.title}}</a>
+              </label>
+            </div>
+            <input type="checkbox" id="'watched' + {{i}}" (change)="moveToWatchedFilms(i)">
+          </li>
+        </ul>
+      </div>
+    </ng-template>
+
+    <ng-template #twoContent>
+      <app-sync-film></app-sync-film>
+
+    </ng-template>
+
   </div>
 
 </div>
