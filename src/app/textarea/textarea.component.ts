@@ -12,24 +12,21 @@ import {WunderlistTask} from "../models/wunderlistTasks";
 })
 export class TextareaComponent implements OnInit {
 
-  inputValue: string = '';
+  inputValue:string = '';
   top:boolean = false;
   @Input() listId:number;
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
   @Output() newFilmInList = new EventEmitter<WunderlistTask>();
 
-  // @ContentChildren(TextareaComponent) film: QueryList<TextareaComponent>;
-
-
   constructor(private http: HttpClient,
               private sharedServiceToken: SharedTokenService,
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   focusFunction(isFocused) {
+
     if(isFocused){
         this.top = true;
     } else {
@@ -40,6 +37,10 @@ export class TextareaComponent implements OnInit {
       }
     }
 
+  }
+
+  clearInput() {
+    this.inputValue = '';
   }
 
   addNewFilm() {

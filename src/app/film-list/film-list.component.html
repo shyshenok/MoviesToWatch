@@ -9,7 +9,8 @@
     <app-button [buttonTitle]="'sync IMDB'"></app-button>
   </app-exit-button>
   <div class="content">
-    <app-textarea [listId] = 'listId' (newFilmInList)="addFilm($event)"></app-textarea>
+    <app-textarea [listId] = 'listId'
+                  (newFilmInList)="addFilm($event)"></app-textarea>
     <div class="control-button-wrapper">
       <div class="control-button">
         <a class="btn" (click)="doRandomize(displayFilmList)">Random</a>

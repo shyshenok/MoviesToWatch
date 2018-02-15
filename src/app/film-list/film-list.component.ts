@@ -1,9 +1,10 @@
-import {Component, Injectable, Input, OnInit} from '@angular/core';
+import {Component, Injectable, Input, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTask} from "../models/wunderlistTasks";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MovieObject} from "../models/movie";
+import {TextareaComponent} from "../textarea/textarea.component";
 
 
 
@@ -27,6 +28,7 @@ export class FilmListComponent implements OnInit {
   num: number;
   randChoise: string;
   tabNumber: number;
+  @ViewChild(TextareaComponent) textareaComponent:TextareaComponent;
 
   constructor(private httpClient: HttpClient,
               private sharedServiceToken: SharedTokenService,
@@ -102,6 +104,7 @@ export class FilmListComponent implements OnInit {
 
   addFilm(film:WunderlistTask) {
     this.filmList.push(film);
+    this.textareaComponent.clearInput();
   }
 
   goToAuthorization() {
