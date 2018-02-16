@@ -18,6 +18,7 @@ import {SharedMovieObjectService} from "../services/shared-movie-object.service"
 
 export class FilmListComponent implements OnInit {
 
+  movieObject:MovieObject;
   ifClicked:boolean = false;
   listId:number;
   listName: string;
@@ -75,8 +76,10 @@ export class FilmListComponent implements OnInit {
   selectFunction() {
 
     if(!this.ifClicked) {
+      if(!this.movieObject) {
+        this.doSynchronize();
+      }
       this.ifClicked = true;
-      this.doSynchronize();
     } else {
       this.ifClicked = false;
     }
@@ -87,10 +90,11 @@ export class FilmListComponent implements OnInit {
     let titleArray = this.filmList.map(o => o.title);
 
     titleArray.forEach(title => {
-      this.httpClient.get<MovieObject>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+title.replace(" ", '+'))
+      this.httpClient.get<MovieObject[]>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+title.replace(" ", '+'))
         .subscribe(data => {
           this.sharedImdbMovieObj.imdbMovieObj = data;
-          console.log(this.sharedImdbMovieObj.imdbMovieObj);
+          this.movieObject = this.sharedImdbMovieObj.imdbMovieObj;
+          console.log(this.movieObject.results);
         });
     });
   }
