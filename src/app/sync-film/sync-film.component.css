@@ -12,7 +12,7 @@
     align-self: flex-start;
     justify-content: flex-end;
     margin: 20px 40px; }
-  .sync-component .sync {
+  .sync-component .sync-list {
     grid-area: d;
     align-self: flex-start;
     justify-content: flex-end;

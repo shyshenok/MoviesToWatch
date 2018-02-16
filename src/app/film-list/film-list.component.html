@@ -5,9 +5,20 @@
   <app-exit-button class="back" (click)="back()">
     <app-button [buttonTitle]="'Back'"></app-button>
   </app-exit-button>
-  <app-exit-button class="sync"  (click)="doSynchronize(displayFilmList)">
-    <app-button [buttonTitle]="'sync IMDB'"></app-button>
-  </app-exit-button>
+
+    <app-exit-button class="sync-list" (click)="doSynchronize(displayFilmList)">
+      <div *ngIf="!ifClicked; then sync else list"></div>
+
+      <ng-template #sync>
+        <app-button  [buttonTitle]="'sync IMDB'"></app-button>
+      </ng-template>
+
+      <ng-template #list>
+        <app-button  [buttonTitle]="'list'"></app-button>
+      </ng-template>
+
+    </app-exit-button>
+
   <div class="content">
     <app-textarea [listId] = 'listId'
                   (newFilmInList)="addFilm($event)"></app-textarea>

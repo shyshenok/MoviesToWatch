@@ -11,14 +11,4 @@ export class SyncFilmComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  goToAuthorization() {
-    localStorage.clear();
-    this.router.navigate(['']);
-  }
-
-  back() {
-    this.router.navigate(['list']);
-  }
-
 }

@@ -22,7 +22,7 @@
     align-self: flex-start;
     justify-content: flex-end;
     margin: 20px 40px; }
-  .film-list .sync {
+  .film-list .sync-list {
     grid-area: d;
     align-self: flex-start;
     justify-content: flex-end;
