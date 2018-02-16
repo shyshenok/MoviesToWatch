@@ -6,7 +6,7 @@
     <app-button [buttonTitle]="'Back'"></app-button>
   </app-exit-button>
 
-    <app-exit-button class="sync-list" (click)="doSynchronize(displayFilmList)">
+    <app-exit-button class="sync-list" (click)="selectFunction()">
       <div *ngIf="!ifClicked; then sync else list"></div>
 
       <ng-template #sync>

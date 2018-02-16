@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit, ViewChild} from '@angular/core';
+import {Component, Injectable, Input, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTask} from "../models/wunderlistTasks";
@@ -18,7 +18,7 @@ import {SharedMovieObjectService} from "../services/shared-movie-object.service"
 
 export class FilmListComponent implements OnInit {
 
-  ifClicked:boolean = false
+  ifClicked:boolean = false;
   listId:number;
   listName: string;
   apiKey: string = 'd59e2b0b45e54e54737b34e64dd843b3';
@@ -72,21 +72,26 @@ export class FilmListComponent implements OnInit {
     this.randChoise = array[this.num-1].title;
   }
 
-  doSynchronize(array:Array<WunderlistTask>) {
+  selectFunction() {
 
     if(!this.ifClicked) {
       this.ifClicked = true;
+      this.doSynchronize();
     } else {
       this.ifClicked = false;
     }
-    let titleArray = array.map(o => o.title);
+
+  }
+
+  doSynchronize() {
+    let titleArray = this.filmList.map(o => o.title);
 
     titleArray.forEach(title => {
       this.httpClient.get<MovieObject>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+title.replace(" ", '+'))
         .subscribe(data => {
           this.sharedImdbMovieObj.imdbMovieObj = data;
-        console.log(this.sharedImdbMovieObj.imdbMovieObj);
-      });
+          console.log(this.sharedImdbMovieObj.imdbMovieObj);
+        });
     });
   }
 
