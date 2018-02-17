@@ -5,7 +5,7 @@ import {WunderlistTask} from "../models/wunderlistTasks";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MovieObject} from "../models/movie";
 import {TextareaComponent} from "../textarea/textarea.component";
-import {SharedMovieObjectService} from "../services/shared-movie-object.service";
+import {Observable} from "rxjs/Rx";
 
 
 @Injectable()
@@ -36,8 +36,7 @@ export class FilmListComponent implements OnInit {
   constructor(private httpClient: HttpClient,
               private sharedServiceToken: SharedTokenService,
               private route: ActivatedRoute,
-              private router: Router,
-              private sharedImdbMovieObj: SharedMovieObjectService) { }
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -87,16 +86,16 @@ export class FilmListComponent implements OnInit {
   }
 
   doSynchronize() {
-    let titleArray = this.filmList.map(o => o.title);
 
-    titleArray.forEach(title => {
-      this.httpClient.get<MovieObject[]>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+title.replace(" ", '+'))
-        .subscribe(data => {
-          this.sharedImdbMovieObj.imdbMovieObj = data;
-          this.movieObject = this.sharedImdbMovieObj.imdbMovieObj;
-          console.log(this.movieObject.results);
-        });
-    });
+    Observable.from(this.displayFilmList)
+      .map(o => o.title.replace(" ", '+'))
+      .flatMap(title => this.httpClient.get<movieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+title))
+      .map(data => data.results)
+      .toArray()
+      .subscribe(arrayOfArrays => {
+        console.log(arrayOfArrays);
+      });
+
   }
 
   back() {
@@ -157,9 +156,6 @@ export class FilmListComponent implements OnInit {
 
   removeMovieFromList(indexFilm) {
     this.ifChange = true;
-    if( this.ifChange === true) {
-      this.state = 'large';
-    }
     this.filmList.splice(indexFilm, 1);
   }
 
