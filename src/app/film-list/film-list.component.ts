@@ -167,7 +167,7 @@ export class FilmListComponent implements OnInit {
 
     setTimeout( () => {
       this.removeMovieFromList(element);
-    }, 2000);
+    }, 700);
   }
 
   removeMovieFromList(indexFilm) {
