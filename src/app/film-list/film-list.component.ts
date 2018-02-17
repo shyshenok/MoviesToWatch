@@ -96,13 +96,9 @@ export class FilmListComponent implements OnInit {
       .toArray()
       .subscribe(arrayOfArrays => {
 
-
         localStorage.setItem('results', JSON.stringify(arrayOfArrays));
 
         this.movieResponseResult = arrayOfArrays;
-
-
-        console.log(localStorage.getItem('results'));
       });
 
   }
@@ -133,6 +129,17 @@ export class FilmListComponent implements OnInit {
   addFilm(film:WunderlistTask) {
     this.filmList.push(film);
     this.textareaComponent.clearInput();
+    this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+film.title.replace(" ", '+'))
+      .subscribe(data => {
+
+        console.log(data);
+        let temp = JSON.parse(localStorage.getItem('results'));
+        console.log(temp);
+        temp.push(data.results);
+        console.log(temp);
+        localStorage.setItem('results', JSON.stringify(temp));
+
+      })
   }
 
   goToAuthorization() {
