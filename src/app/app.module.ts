@@ -29,7 +29,7 @@ import { SyncFilmComponent } from './sync-film/sync-film.component';
     TabsComponent,
     TabComponent,
     ButtonComponent,
-    SyncFilmComponent
+    SyncFilmComponent,
   ],
   imports: [
     BrowserModule,

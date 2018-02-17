@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MovieObject} from "../models/movie";
 import {TextareaComponent} from "../textarea/textarea.component";
 import {Observable} from "rxjs/Rx";
+import {MovieResponse, MovieResponseResult} from "../models/movieResponse";
 
 
 @Injectable()
@@ -19,6 +20,7 @@ import {Observable} from "rxjs/Rx";
 export class FilmListComponent implements OnInit {
 
   movieObject:MovieObject;
+  movieResponseResult: MovieResponseResult[][];
   ifClicked:boolean = false;
   listId:number;
   listName: string;
@@ -75,7 +77,7 @@ export class FilmListComponent implements OnInit {
   selectFunction() {
 
     if(!this.ifClicked) {
-      if(!this.movieObject) {
+      if(!this.movieResponseResult) {
         this.doSynchronize();
       }
       this.ifClicked = true;
@@ -89,11 +91,18 @@ export class FilmListComponent implements OnInit {
 
     Observable.from(this.displayFilmList)
       .map(o => o.title.replace(" ", '+'))
-      .flatMap(title => this.httpClient.get<movieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+title))
+      .flatMap(title => this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+title))
       .map(data => data.results)
       .toArray()
       .subscribe(arrayOfArrays => {
-        console.log(arrayOfArrays);
+
+
+        localStorage.setItem('results', JSON.stringify(arrayOfArrays));
+
+        this.movieResponseResult = arrayOfArrays;
+
+
+        console.log(localStorage.getItem('results'));
       });
 
   }

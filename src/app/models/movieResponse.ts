@@ -1,14 +1,14 @@
 /**
  * Created by shyshenok on 17.02.2018.
  */
-interface movieResponse {
+export interface MovieResponse {
   page: number;
   total_results: number;
   total_pages: number;
-  results: Result[];
+  results: MovieResponseResult[];
 }
 
-interface Result {
+export interface MovieResponseResult {
   vote_count: number;
   id: number;
   video: boolean;
