@@ -15,7 +15,6 @@ import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tab/tab.component';
 import { ButtonComponent } from './button/button.component';
 import { SyncFilmComponent } from './sync-film/sync-film.component';
-import {SharedMovieObjectService} from "./services/shared-movie-object.service";
 
 
 
@@ -38,7 +37,7 @@ import {SharedMovieObjectService} from "./services/shared-movie-object.service";
     HttpClientModule,
     FormsModule,
   ],
-  providers: [SharedTokenService, SharedMovieObjectService],
+  providers: [SharedTokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

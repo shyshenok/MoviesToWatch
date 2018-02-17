@@ -1,4 +1,4 @@
-import {Component, Injectable, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Injectable, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTask} from "../models/wunderlistTasks";
