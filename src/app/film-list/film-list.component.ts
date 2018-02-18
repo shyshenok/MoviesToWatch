@@ -7,6 +7,7 @@ import {MovieObject} from "../models/movie";
 import {TextareaComponent} from "../textarea/textarea.component";
 import {Observable} from "rxjs/Rx";
 import {MovieResponse, MovieResponseResult} from "../models/movieResponse";
+import {ImdbResultsForLocalStorage} from "../models/imdb-results-for-local-storage";
 
 
 @Injectable()
@@ -67,13 +68,6 @@ export class FilmListComponent implements OnInit {
 
   }
 
-  doRandomize(array:Array<WunderlistTask>) {
-    let min = 0;
-    let max = array.length-1;
-    this.num = Math.floor(Math.random() * (max - min + 1)) + min+1;
-    this.randChoise = array[this.num-1].title;
-  }
-
   selectFunction() {
 
     if(!this.ifClicked) {
@@ -84,27 +78,24 @@ export class FilmListComponent implements OnInit {
     } else {
       this.ifClicked = false;
     }
-
   }
 
   doSynchronize() {
 
     Observable.from(this.displayFilmList)
-      .map(o => o.title.replace(" ", '+'))
-      .flatMap(title => this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+title))
-      .map(data => data.results)
+      .flatMap(o =>
+        this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+o.title.replace(" ", '+'))
+          .map(data => data.results)
+          .map(arrayOfResults => new ImdbResultsForLocalStorage(o.id, o.title, arrayOfResults)))
       .toArray()
-      .subscribe(arrayOfArrays => {
+      .subscribe(arrayOfImdbResultsForLocalStorage => {
 
-        localStorage.setItem('results', JSON.stringify(arrayOfArrays));
+        localStorage.setItem('results', JSON.stringify(arrayOfImdbResultsForLocalStorage));
 
-        this.movieResponseResult = arrayOfArrays;
+        // this.movieResponseResult = arrayOfImdbResultsForLocalStorage;
+        // console.log(arrayOfImdbResultsForLocalStorage)
       });
 
-  }
-
-  back() {
-    this.router.navigate(['list']);
   }
 
   onTabChange(tab:number) {
@@ -130,27 +121,41 @@ export class FilmListComponent implements OnInit {
     this.filmList.push(film);
     this.textareaComponent.clearInput();
     this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+film.title.replace(" ", '+'))
+      .map(data => data.results)
+      .map(results => new ImdbResultsForLocalStorage(film.id, film.title, results))
       .subscribe(data => {
 
         console.log(data);
-        let temp = JSON.parse(localStorage.getItem('results'));
-        console.log(temp);
-        temp.push(data.results);
-        console.log(temp);
-        localStorage.setItem('results', JSON.stringify(temp));
+        this.addToCache(data)
 
       })
   }
 
-  goToAuthorization() {
-    localStorage.clear();
-    this.router.navigate(['']);
+  addToCache(element) {
+    let temp = JSON.parse(localStorage.getItem('results'));
+    console.log(temp);
+    temp.push(element);
+    console.log(temp);
+    localStorage.setItem('results', JSON.stringify(temp));
+  }
+
+  deleteFromCache(id) {
+    let temp = JSON.parse(localStorage.getItem('results'));
+    console.log(temp);
+    let foundResult = temp.findIndex(object => object.wunderlistId === id);
+    console.log("foundResult" + foundResult);
+    if(foundResult !== -1) {
+      console.log('if');
+      temp.splice(foundResult, 1);
+      console.log(temp);
+      localStorage.setItem('results', JSON.stringify(temp));
+    }
   }
 
   moveToWatchedFilms(element) {
     console.log(element);
-    let currentElRevision = this.filmList[element].revision;
-    let currentElId = this.filmList[element].id;
+    let currentElRevision = this.displayFilmList[element].revision;
+    let currentElId = this.displayFilmList[element].id;
     let completed = true;
 
     console.log(currentElRevision);
@@ -172,8 +177,24 @@ export class FilmListComponent implements OnInit {
 
   removeMovieFromList(indexFilm) {
     this.ifChange = true;
-    this.filmList.splice(indexFilm, 1);
+    this.deleteFromCache(this.displayFilmList[indexFilm].id);
+    this.displayFilmList.splice(indexFilm, 1);
   }
 
+  goToAuthorization() {
+    localStorage.clear();
+    this.router.navigate(['']);
+  }
+
+  back() {
+    this.router.navigate(['list']);
+  }
+
+  doRandomize(array:Array<WunderlistTask>) {
+    let min = 0;
+    let max = array.length-1;
+    this.num = Math.floor(Math.random() * (max - min + 1)) + min+1;
+    this.randChoise = array[this.num-1].title;
+  }
 
 }

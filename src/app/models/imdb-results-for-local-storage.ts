@@ -2,8 +2,11 @@ import {MovieResponseResult} from "./movieResponse";
 
 
 
-export interface ImdbResultsForLocalStorage {
-  wunderlistId: number;
-  wunderlistTitle: string;
-  results: MovieResponseResult[];
+export class ImdbResultsForLocalStorage {
+
+  constructor(public wunderlistId:number,
+              public wunderlistTitle: string,
+              public results: MovieResponseResult[]) {
+
+  }
 }
