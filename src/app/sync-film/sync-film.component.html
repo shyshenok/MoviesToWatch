@@ -7,12 +7,14 @@
 
     <div class="table">
       <div class="time">duration</div>
-      <div class="rating"></div>
+      <div class="rating"> rating</div>
     </div>
+  <ul >
+    <li *ngFor="let film of movieResponseResult">{{film.wunderlistTitle}}
+      <a *ngFor="let result of film.results" >{{result.title}} </a>
+    </li>
+  </ul>
 
-    <ul>
-      <li><a >;ldsk;klv;kl;dvsk;lv</a></li>
-    </ul>
 
 
 </div>

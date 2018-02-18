@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {ImdbResultsForLocalStorage} from "../models/imdb-results-for-local-storage";
 
 @Component({
   selector: 'app-sync-film',
@@ -7,9 +8,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SyncFilmComponent implements OnInit{
 
+  @Input() movieResponseResult: ImdbResultsForLocalStorage[];
+
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.movieResponseResult)
+  }
 }
 

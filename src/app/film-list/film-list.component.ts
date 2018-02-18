@@ -3,10 +3,9 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTask} from "../models/wunderlistTasks";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MovieObject} from "../models/movie";
 import {TextareaComponent} from "../textarea/textarea.component";
 import {Observable} from "rxjs/Rx";
-import {MovieResponse, MovieResponseResult} from "../models/movieResponse";
+import {MovieResponse} from "../models/movieResponse";
 import {ImdbResultsForLocalStorage} from "../models/imdb-results-for-local-storage";
 
 
@@ -20,8 +19,7 @@ import {ImdbResultsForLocalStorage} from "../models/imdb-results-for-local-stora
 
 export class FilmListComponent implements OnInit {
 
-  movieObject:MovieObject;
-  movieResponseResult: MovieResponseResult[][];
+  movieResponseResult: ImdbResultsForLocalStorage[];
   ifClicked:boolean = false;
   listId:number;
   listName: string;
@@ -81,7 +79,6 @@ export class FilmListComponent implements OnInit {
   }
 
   doSynchronize() {
-
     Observable.from(this.displayFilmList)
       .flatMap(o =>
         this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+o.title.replace(" ", '+'))
@@ -92,8 +89,9 @@ export class FilmListComponent implements OnInit {
 
         localStorage.setItem('results', JSON.stringify(arrayOfImdbResultsForLocalStorage));
 
-        // this.movieResponseResult = arrayOfImdbResultsForLocalStorage;
-        // console.log(arrayOfImdbResultsForLocalStorage)
+
+        this.movieResponseResult = arrayOfImdbResultsForLocalStorage;
+        console.log(arrayOfImdbResultsForLocalStorage)
       });
 
   }
@@ -125,7 +123,6 @@ export class FilmListComponent implements OnInit {
       .map(results => new ImdbResultsForLocalStorage(film.id, film.title, results))
       .subscribe(data => {
 
-        console.log(data);
         this.addToCache(data)
 
       })

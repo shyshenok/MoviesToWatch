@@ -1,21 +1,3 @@
-.sync-component {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-areas: "c d b" ". a ."; }
-  .sync-component .exit {
-    grid-area: b;
-    align-self: flex-start;
-    justify-content: flex-start;
-    margin: 20px 40px; }
-  .sync-component .back {
-    grid-area: c;
-    align-self: flex-start;
-    justify-content: flex-end;
-    margin: 20px 40px; }
-  .sync-component .sync-list {
-    grid-area: d;
-    align-self: flex-start;
-    justify-content: flex-end;
-    margin: 20px 40px; }
+
 
 /*# sourceMappingURL=sync-film.component.css.map */
