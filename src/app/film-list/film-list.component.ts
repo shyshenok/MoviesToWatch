@@ -81,7 +81,7 @@ export class FilmListComponent implements OnInit {
   doSynchronize() {
     Observable.from(this.displayFilmList)
       .flatMap(o =>
-        this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+o.title.replace(" ", '+'))
+        this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+o.title.replace(" ", '+')+"&language=ru")
           .map(data => data.results)
           .map(arrayOfResults => new ImdbResultsForLocalStorage(o.id, o.title, arrayOfResults)))
       .toArray()
