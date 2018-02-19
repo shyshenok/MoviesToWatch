@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit, ViewChild} from '@angular/core';
+import {Component, Injectable, OnInit, ViewChild} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {SharedTokenService} from "../services/shared-token.service";
 import {WunderlistTask} from "../models/wunderlistTasks";
@@ -7,6 +7,7 @@ import {TextareaComponent} from "../textarea/textarea.component";
 import {Observable} from "rxjs/Rx";
 import {MovieResponse} from "../models/movieResponse";
 import {ImdbResultsForLocalStorage} from "../models/imdb-results-for-local-storage";
+import {MovieObject} from "../models/movie";
 
 
 @Injectable()
@@ -20,8 +21,8 @@ import {ImdbResultsForLocalStorage} from "../models/imdb-results-for-local-stora
 export class FilmListComponent implements OnInit {
 
   movieResponseResult: ImdbResultsForLocalStorage[];
-  ifClicked:boolean = false;
-  listId:number;
+  ifClicked: boolean = false;
+  listId: number;
   listName: string;
   apiKey: string = 'd59e2b0b45e54e54737b34e64dd843b3';
   headerToken: string;
@@ -32,12 +33,13 @@ export class FilmListComponent implements OnInit {
   randChoise: string;
   tabNumber: number;
   ifChange: boolean = false;
-  @ViewChild(TextareaComponent) textareaComponent:TextareaComponent;
+  @ViewChild(TextareaComponent) textareaComponent: TextareaComponent;
 
   constructor(private httpClient: HttpClient,
               private sharedServiceToken: SharedTokenService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
 
@@ -53,8 +55,15 @@ export class FilmListComponent implements OnInit {
       params = params.append('list_id', qParams["list_id"]);
 
       this.httpClient.get<WunderlistTask[]>("https://a.wunderlist.com/api/v1/tasks",
-        {headers: {'Accept-Language': 'ru-RU','Content-Language': 'ru-RU','X-Access-Token': this.headerToken, 'X-Client-ID': this.clientId},
-        params: params},)
+        {
+          headers: {
+            'Accept-Language': 'ru-RU',
+            'Content-Language': 'ru-RU',
+            'X-Access-Token': this.headerToken,
+            'X-Client-ID': this.clientId
+          },
+          params: params
+        },)
         .subscribe(data => {
           this.filmList = data;
           console.log(this.filmList);
@@ -67,9 +76,8 @@ export class FilmListComponent implements OnInit {
   }
 
   selectFunction() {
-
-    if(!this.ifClicked) {
-      if(!this.movieResponseResult) {
+    if (!this.ifClicked) {
+      if (!this.movieResponseResult) {
         this.doSynchronize();
       }
       this.ifClicked = true;
@@ -80,31 +88,37 @@ export class FilmListComponent implements OnInit {
 
   doSynchronize() {
     Observable.from(this.displayFilmList)
+      .delay(500)
       .flatMap(o =>
-        this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+o.title.replace(" ", '+')+"&language=ru")
+        this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&query=' + o.title.replace(" ", '+') + "&language=ru")
           .map(data => data.results)
+          .flatMap(results => Observable.from(results)
+            .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey))
+              .toArray()
+          )
           .map(arrayOfResults => new ImdbResultsForLocalStorage(o.id, o.title, arrayOfResults)))
       .toArray()
       .subscribe(arrayOfImdbResultsForLocalStorage => {
 
         localStorage.setItem('results', JSON.stringify(arrayOfImdbResultsForLocalStorage));
 
-
         this.movieResponseResult = arrayOfImdbResultsForLocalStorage;
-        console.log(arrayOfImdbResultsForLocalStorage)
+        console.log(arrayOfImdbResultsForLocalStorage);
+
       });
 
   }
 
-  onTabChange(tab:number) {
+
+  onTabChange(tab: number) {
     this.tabNumber = tab;
-    if(this.tabNumber === 0) {
+    if (this.tabNumber === 0) {
       this.displayFilmList = this.filmList;
       return;
     }
 
     this.displayFilmList = this.filmList.filter(film => {
-      switch (this.tabNumber){
+      switch (this.tabNumber) {
         case 1:
           return film.created_by_id === 53342247;
         case  2:
@@ -115,11 +129,14 @@ export class FilmListComponent implements OnInit {
     })
   }
 
-  addFilm(film:WunderlistTask) {
+  addFilm(film: WunderlistTask) {
     this.filmList.push(film);
     this.textareaComponent.clearInput();
-    this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key='+this.apiKey+'&query='+film.title.replace(" ", '+'))
+    this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&query=' + film.title.replace(" ", '+')+"&language=ru-RU")
       .map(data => data.results)
+      .flatMap(results => Observable.from(results)
+        .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey+"&language=ru-RU"))
+        .toArray())
       .map(results => new ImdbResultsForLocalStorage(film.id, film.title, results))
       .subscribe(data => {
 
@@ -141,7 +158,7 @@ export class FilmListComponent implements OnInit {
     console.log(temp);
     let foundResult = temp.findIndex(object => object.wunderlistId === id);
     console.log("foundResult" + foundResult);
-    if(foundResult !== -1) {
+    if (foundResult !== -1) {
       console.log('if');
       temp.splice(foundResult, 1);
       console.log(temp);
@@ -158,8 +175,9 @@ export class FilmListComponent implements OnInit {
     console.log(currentElRevision);
     let body = `{\"revision\":${currentElRevision}, \"completed\":${completed}}`;
 
-    this.httpClient.patch<WunderlistTask>('https://a.wunderlist.com/api/v1/tasks/'+ currentElId, body ,{
-      headers: {'X-Access-Token': this.headerToken,
+    this.httpClient.patch<WunderlistTask>('https://a.wunderlist.com/api/v1/tasks/' + currentElId+"&language=ru-RU", body, {
+      headers: {
+        'X-Access-Token': this.headerToken,
         'X-Client-ID': this.clientId,
         'Content-Type': 'application/json'
       }
@@ -167,7 +185,7 @@ export class FilmListComponent implements OnInit {
       console.log(data);
     });
 
-    setTimeout( () => {
+    setTimeout(() => {
       this.removeMovieFromList(element);
     }, 700);
   }
@@ -187,11 +205,11 @@ export class FilmListComponent implements OnInit {
     this.router.navigate(['list']);
   }
 
-  doRandomize(array:Array<WunderlistTask>) {
+  doRandomize(array: Array<WunderlistTask>) {
     let min = 0;
-    let max = array.length-1;
-    this.num = Math.floor(Math.random() * (max - min + 1)) + min+1;
-    this.randChoise = array[this.num-1].title;
+    let max = array.length - 1;
+    this.num = Math.floor(Math.random() * (max - min + 1)) + min + 1;
+    this.randChoise = array[this.num - 1].title;
   }
 
 }
