@@ -1,3 +1,25 @@
-
+.sync-component .table {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 100%;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.6); }
+  .sync-component .table .wl-name {
+    width: 34%;
+    max-width: 35%; }
+  .sync-component .table .imdb-name {
+    width: 34%;
+    max-width: 35%; }
+  .sync-component .table .time {
+    width: 11%;
+    max-width: 12%; }
+  .sync-component .table .rating {
+    width: 9%;
+    max-width: 10%; }
+  .sync-component .table .status {
+    width: 10%;
+    max-width: 10%; }
 
 /*# sourceMappingURL=sync-film.component.css.map */

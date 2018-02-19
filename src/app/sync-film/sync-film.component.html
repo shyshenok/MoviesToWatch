@@ -6,14 +6,24 @@
 
 
     <div class="table">
-      <div class="time">duration</div>
+      <div class="wl-name">wunderlist name</div>
+      <div class="imdb-name">imdb name</div>
+      <div class="time">time</div>
       <div class="rating"> rating</div>
+      <div class="status"> status</div>
     </div>
-  <ul >
-    <li *ngFor="let film of movieResponseResult">{{film.wunderlistTitle}}
-      <a *ngFor="let result of film.results" >{{result.title}} </a>
-    </li>
-  </ul>
+  <div class="response">
+    <ul>
+      <li *ngFor="let film of movieResponseResult">
+        <a class="wl-name" >{{film.wunderlistTitle}}</a>
+        <a class="imdb-name" *ngFor="let result of film.results" >{{result.title}} </a>
+        <a class="time" *ngFor="let result of film.results" >{{result.runtime}} </a>
+        <a class="rating" *ngFor="let result of film.results"> {{result.vote_average}}</a>
+      </li>
+    </ul>
+
+  </div>
+
 
 
 
