@@ -9,14 +9,14 @@
   color: white;
   text-align: center; }
 .sync-component .wl-name {
-  width: 34%;
-  max-width: 35%; }
+  width: 33%;
+  max-width: 33%; }
 .sync-component .imdb-name {
-  width: 34%;
-  max-width: 35%; }
+  width: 33%;
+  max-width: 33%; }
 .sync-component .time {
-  width: 11%;
-  max-width: 12%; }
+  width: 13%;
+  max-width: 13%; }
 .sync-component .rating {
   width: 10%;
   max-width: 10%; }
@@ -53,15 +53,23 @@
         border-right: 2px solid transparent;
         border-bottom: 2px solid transparent;
         border-top: 2px solid transparent; }
+      .sync-component .response ul li .time,
+      .sync-component .response ul li .rating {
+        text-align: center; }
       .sync-component .response ul li .status {
         display: flex; }
       .sync-component .response ul li span {
         height: 10px;
         width: 10px;
-        background-color: green;
         display: block;
         border-radius: 50%;
         margin: 0 auto;
         align-self: center; }
+      .sync-component .response ul li .green {
+        background-color: green; }
+      .sync-component .response ul li .red {
+        background-color: darkred; }
+      .sync-component .response ul li .blue {
+        background-color: blue; }
 
 /*# sourceMappingURL=sync-film.component.css.map */
