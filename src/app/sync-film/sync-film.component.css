@@ -5,42 +5,63 @@
   text-transform: uppercase;
   font-size: 14px;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.6); }
-  .sync-component .table .wl-name {
-    width: 34%;
-    max-width: 35%; }
-  .sync-component .table .imdb-name {
-    width: 34%;
-    max-width: 35%; }
-  .sync-component .table .time {
-    width: 11%;
-    max-width: 12%; }
-  .sync-component .table .rating {
-    width: 9%;
-    max-width: 10%; }
-  .sync-component .table .status {
-    width: 10%;
-    max-width: 10%; }
-.sync-component .response ul {
-  margin: 0;
-  padding: 0; }
-  .sync-component .response ul li {
-    display: flex;
-    flex-flow: row nowrap; }
-    .sync-component .response ul li .wl-name {
-      width: 34%;
-      max-width: 35%; }
-    .sync-component .response ul li .imdb-name {
-      width: 34%;
-      max-width: 35%; }
-    .sync-component .response ul li .time {
-      width: 11%;
-      max-width: 12%; }
-    .sync-component .response ul li .rating {
-      width: 9%;
-      max-width: 10%; }
-    .sync-component .response ul li .status {
-      width: 10%;
-      max-width: 10%; }
+  background-color: rgba(75, 112, 155, 0.3);
+  color: white;
+  text-align: center; }
+.sync-component .wl-name {
+  width: 34%;
+  max-width: 35%; }
+.sync-component .imdb-name {
+  width: 34%;
+  max-width: 35%; }
+.sync-component .time {
+  width: 11%;
+  max-width: 12%; }
+.sync-component .rating {
+  width: 10%;
+  max-width: 10%; }
+.sync-component .status {
+  width: 11%;
+  max-width: 11%; }
+.sync-component .response {
+  min-height: 150px; }
+  .sync-component .response ul {
+    margin: 0;
+    padding: 0; }
+    .sync-component .response ul li {
+      display: flex;
+      flex-flow: row nowrap;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      color: #4b709b; }
+      .sync-component .response ul li:hover {
+        color: #ffffff;
+        text-shadow: 1px 1px 0 #4b709b; }
+        .sync-component .response ul li:hover a {
+          background-color: rgba(75, 112, 155, 0.3); }
+      .sync-component .response ul li a {
+        word-break: break-word;
+        background-color: rgba(255, 255, 255, 0.6);
+        background-clip: padding-box;
+        display: inline-block;
+        padding: 8px 10px; }
+      .sync-component .response ul li .wl-name,
+      .sync-component .response ul li .imdb-name,
+      .sync-component .response ul li .time,
+      .sync-component .response ul li .rating,
+      .sync-component .response ul li .status {
+        border-right: 2px solid transparent;
+        border-bottom: 2px solid transparent;
+        border-top: 2px solid transparent; }
+      .sync-component .response ul li .status {
+        display: flex; }
+      .sync-component .response ul li span {
+        height: 10px;
+        width: 10px;
+        background-color: green;
+        display: block;
+        border-radius: 50%;
+        margin: 0 auto;
+        align-self: center; }
 
 /*# sourceMappingURL=sync-film.component.css.map */

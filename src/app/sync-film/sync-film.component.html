@@ -17,8 +17,12 @@
       <li *ngFor="let film of movieResponseResult">
         <a class="wl-name" >{{film.wunderlistTitle}}</a>
         <a class="imdb-name" *ngIf="film.results.length > 0">{{film.results[0].title}} </a>
+        <a class="imdb-name" *ngIf="film.results.length === 0"> result not found </a>
         <a class="time" *ngIf="film.results.length > 0" >{{film.results[0].runtime}} </a>
+        <a class="time" *ngIf="film.results.length === 0"> 0 </a>
         <a class="rating" *ngIf="film.results.length > 0"> {{film.results[0].vote_average}}</a>
+        <a class="rating" *ngIf="film.results.length === 0"> 0 </a>
+        <a class="status"><span></span></a>
       </li>
     </ul>
 
