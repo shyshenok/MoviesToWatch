@@ -65,11 +65,11 @@
         border-radius: 50%;
         margin: 0 auto;
         align-self: center; }
-      .sync-component .response ul li .green {
-        background-color: green; }
-      .sync-component .response ul li .red {
-        background-color: darkred; }
-      .sync-component .response ul li .blue {
-        background-color: blue; }
+      .sync-component .response ul li .status-ok {
+        background-color: #4bb74b; }
+      .sync-component .response ul li .status-not-found {
+        background-color: #e16262; }
+      .sync-component .response ul li .status-more-then-one {
+        background-color: #3e99b3; }
 
 /*# sourceMappingURL=sync-film.component.css.map */

@@ -91,16 +91,16 @@
             margin: 0 auto;
             align-self: center;
           }
-        .green {
-          background-color: green;
+        .status-ok {
+          background-color: $status-ok;
         }
 
-        .red {
-          background-color: darkred;
+        .status-not-found {
+          background-color: $status-not-found;
         }
 
-        .blue {
-          background-color: blue;
+        .status-more-then-one {
+          background-color: $status-more-then-one;
 
         }
 

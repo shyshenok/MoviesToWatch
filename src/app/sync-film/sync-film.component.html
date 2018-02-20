@@ -23,9 +23,9 @@
         <a class="rating" *ngIf="film.results.length > 0"> {{film.results[0].vote_average}}</a>
         <a class="rating" *ngIf="film.results.length === 0"> 0 </a>
         <a class="status" >
-          <span *ngIf="film.results.length === 1" class="green"></span>
-          <span *ngIf="film.results.length === 0" class="red"></span>
-          <span *ngIf="film.results.length > 1" class="blue"></span>
+          <span *ngIf="film.results.length === 1" class="status-ok"></span>
+          <span *ngIf="film.results.length === 0" class="status-not-found"></span>
+          <span *ngIf="film.results.length > 1" class="status-more-then-one"></span>
         </a>
       </li>
     </ul>
