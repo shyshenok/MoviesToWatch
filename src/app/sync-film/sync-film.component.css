@@ -21,5 +21,26 @@
   .sync-component .table .status {
     width: 10%;
     max-width: 10%; }
+.sync-component .response ul {
+  margin: 0;
+  padding: 0; }
+  .sync-component .response ul li {
+    display: flex;
+    flex-flow: row nowrap; }
+    .sync-component .response ul li .wl-name {
+      width: 34%;
+      max-width: 35%; }
+    .sync-component .response ul li .imdb-name {
+      width: 34%;
+      max-width: 35%; }
+    .sync-component .response ul li .time {
+      width: 11%;
+      max-width: 12%; }
+    .sync-component .response ul li .rating {
+      width: 9%;
+      max-width: 10%; }
+    .sync-component .response ul li .status {
+      width: 10%;
+      max-width: 10%; }
 
 /*# sourceMappingURL=sync-film.component.css.map */

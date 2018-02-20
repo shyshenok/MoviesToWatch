@@ -37,6 +37,38 @@
     }
   }
 
+  .response {
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        display: flex;
+        flex-flow: row nowrap;
+        .wl-name {
+          width: 34%;
+          max-width: 35%;
+        }
+        .imdb-name {
+          width: 34%;
+          max-width: 35%;
+        }
+        .time {
+          width: 11%;
+          max-width: 12%;
+        }
+        .rating {
+          width: 9%;
+          max-width: 10%;
+        }
+        .status {
+          width: 10%;
+          max-width: 10%;
+        }
+      }
+
+    }
+  }
+
 }
 
 
