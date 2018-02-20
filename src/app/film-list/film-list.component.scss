@@ -129,6 +129,11 @@
     .control-button {
       grid-area: a;
       padding: 14px 0;
+      display: flex;
+      align-items: center;
+      p {
+        font-size: 12px;
+      }
       a {
         display: inline-block;
         width: 100%;

@@ -92,7 +92,11 @@
     grid-template-areas: "a a a" "b b b"; }
     .film-list .control-button-wrapper .control-button {
       grid-area: a;
-      padding: 14px 0; }
+      padding: 14px 0;
+      display: flex;
+      align-items: center; }
+      .film-list .control-button-wrapper .control-button p {
+        font-size: 12px; }
       .film-list .control-button-wrapper .control-button a {
         display: inline-block;
         width: 100%;

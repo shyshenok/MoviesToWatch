@@ -25,8 +25,8 @@
     <div class="control-button-wrapper">
       <div class="control-button">
         <a class="btn" (click)="doRandomize(displayFilmList)">Random</a>
+        <p class="response">{{this.num}} {{this.randChoise}}</p>
       </div>
-      <p class="response">Random result: {{this.num}} {{this.randChoise}}</p>
     </div>
     <div *ngIf="!ifClicked; then oneContent else twoContent"></div>
     <ng-template #oneContent>
