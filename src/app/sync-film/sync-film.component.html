@@ -25,12 +25,30 @@
         <a class="status" >
           <span *ngIf="film.results.length === 1" class="status-ok"></span>
           <span *ngIf="film.results.length === 0" class="status-not-found"></span>
-          <span *ngIf="film.results.length > 1" class="status-more-then-one"></span>
+          <span *ngIf="film.results.length > 1"
+                class="status-more-then-one"
+                (click)=showMoreResults(film.results)></span>
+
         </a>
       </li>
+      <app-modal-dialog [(visible)]="show">
+        <div class="table">
+          <div class="imdb-name">imdb name</div>
+          <div class="time">time</div>
+          <div class="rating"> rating</div>
+        </div>
+        <ul>
+          <li>
+            <a class="imdb-name"></a>
+            <a class="time"></a>
+            <a class="rating"></a>
+          </li>
+        </ul>
+      </app-modal-dialog>
     </ul>
 
   </div>
+
 
 
 

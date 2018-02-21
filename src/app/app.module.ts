@@ -15,6 +15,8 @@ import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tab/tab.component';
 import { ButtonComponent } from './button/button.component';
 import { SyncFilmComponent } from './sync-film/sync-film.component';
+import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 
@@ -30,12 +32,14 @@ import { SyncFilmComponent } from './sync-film/sync-film.component';
     TabComponent,
     ButtonComponent,
     SyncFilmComponent,
+    ModalDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [SharedTokenService],
   bootstrap: [AppComponent]
