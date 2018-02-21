@@ -32,16 +32,24 @@
         </a>
       </li>
       <app-modal-dialog [(visible)]="show">
+        <div class="description">
+          <a class="add-button"></a>
+          <a class="change-button"></a>
+          <a class="delete-button"></a>
+        </div>
         <div class="table">
           <div class="imdb-name">imdb name</div>
           <div class="time">time</div>
           <div class="rating"> rating</div>
         </div>
         <ul>
-          <li>
-            <a class="imdb-name"></a>
-            <a class="time"></a>
-            <a class="rating"></a>
+          <li *ngFor="let modalResult of modalResults">
+            <a class="imdb-name">{{modalResult.title}}</a>
+            <a class="time">{{modalResult.runtime}}</a>
+            <a class="rating">{{modalResult.vote_average}}</a>
+            <a class="add-button"></a>
+            <a class="change-button"></a>
+            <a class="delete-button"></a>
           </li>
         </ul>
       </app-modal-dialog>

@@ -116,7 +116,28 @@
         }
 
       }
+    }
+  }
 
+  app-modal-dialog {
+    .imdb-name {
+      width: 40%;
+      max-width: 40%;
+    }
+    .time {
+      width: 18%;
+      max-width: 18%;
+    }
+    .rating {
+      width: 18%;
+      max-width: 18%;
+    }
+
+    .add-button,
+    .change-button,
+    .delete-button {
+      width: 8%;
+      max-width: 8%;
     }
   }
 
