@@ -33,9 +33,14 @@
       </li>
       <app-modal-dialog [(visible)]="show">
         <div class="description">
-          <a class="add-button"></a>
-          <a class="change-button"></a>
-          <a class="delete-button"></a>
+          <p class="add-button">
+            <i class="fas fa-plus"></i>
+            <span>Add this film to wunderlist</span>
+          </p>
+          <p class="delete-button">
+            <i class="fas fa-minus"></i>
+            <span>Delete film</span>
+          </p>
         </div>
         <div class="table">
           <div class="imdb-name">imdb name</div>
@@ -47,9 +52,8 @@
             <a class="imdb-name">{{modalResult.title}}</a>
             <a class="time">{{modalResult.runtime}}</a>
             <a class="rating">{{modalResult.vote_average}}</a>
-            <a class="add-button"></a>
-            <a class="change-button"></a>
-            <a class="delete-button"></a>
+            <a class="add-button"><i class="fas fa-plus"></i></a>
+            <a class="delete-button"><i class="fas fa-minus"></i></a>
           </li>
         </ul>
       </app-modal-dialog>

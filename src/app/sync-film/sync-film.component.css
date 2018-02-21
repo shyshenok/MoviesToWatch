@@ -43,7 +43,6 @@
         word-break: break-word;
         background-color: rgba(255, 255, 255, 0.6);
         background-clip: padding-box;
-        display: inline-block;
         padding: 8px 10px; }
       .sync-component .response ul li .wl-name,
       .sync-component .response ul li .imdb-name,
@@ -76,19 +75,51 @@
         background-color: #e16262; }
       .sync-component .response ul li .status-more-then-one::before {
         background-color: #3e99b3; }
+.sync-component app-modal-dialog .description {
+  display: flex;
+  flex-flow: row nowrap; }
+  .sync-component app-modal-dialog .description .add-button,
+  .sync-component app-modal-dialog .description .delete-button {
+    display: flex;
+    max-width: 100%;
+    width: auto;
+    margin: 0;
+    padding: 10px; }
+    .sync-component app-modal-dialog .description .add-button i,
+    .sync-component app-modal-dialog .description .delete-button i {
+      margin: 0 6px; }
 .sync-component app-modal-dialog .imdb-name {
-  width: 40%;
-  max-width: 40%; }
+  width: 44%;
+  max-width: 44%; }
 .sync-component app-modal-dialog .time {
-  width: 18%;
-  max-width: 18%; }
+  width: 20%;
+  max-width: 20%; }
 .sync-component app-modal-dialog .rating {
-  width: 18%;
-  max-width: 18%; }
+  width: 20%;
+  max-width: 20%; }
 .sync-component app-modal-dialog .add-button,
-.sync-component app-modal-dialog .change-button,
 .sync-component app-modal-dialog .delete-button {
   width: 8%;
-  max-width: 8%; }
+  max-width: 8%;
+  display: flex;
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-top: 2px solid transparent; }
+.sync-component app-modal-dialog i {
+  padding: 4px;
+  font-size: 10px;
+  display: block;
+  border-radius: 50%;
+  margin: 0 auto;
+  align-self: center;
+  color: #ffffff; }
+.sync-component app-modal-dialog .delete-button i {
+  background-color: #e16262; }
+  .sync-component app-modal-dialog .delete-button i:hover {
+    background-color: #e98d8d; }
+.sync-component app-modal-dialog .add-button i {
+  background-color: #4bb74b; }
+  .sync-component app-modal-dialog .add-button i:hover {
+    background-color: #6fc66f; }
 
 /*# sourceMappingURL=sync-film.component.css.map */
