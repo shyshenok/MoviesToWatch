@@ -75,6 +75,9 @@
         background-color: #e16262; }
       .sync-component .response ul li .status-more-then-one::before {
         background-color: #3e99b3; }
+.sync-component app-modal-dialog h3 {
+  color: #4b709b;
+  text-align: center; }
 .sync-component app-modal-dialog .description {
   display: flex;
   flex-flow: row nowrap; }
@@ -84,7 +87,8 @@
     max-width: 100%;
     width: auto;
     margin: 0;
-    padding: 10px; }
+    padding: 10px;
+    color: #4b709b; }
     .sync-component app-modal-dialog .description .add-button i,
     .sync-component app-modal-dialog .description .delete-button i {
       margin: 0 6px; }

@@ -120,6 +120,12 @@
 
   app-modal-dialog {
 
+    h3 {
+      color: $bottom-text-shadow-color;
+      text-align: center;
+
+    }
+
     .description {
       display: flex;
       flex-flow: row nowrap;
@@ -130,6 +136,7 @@
         width: auto;
         margin: 0;
         padding: 10px;
+        color: $bottom-text-shadow-color;
         i {
           margin: 0 6px;
         }
@@ -186,6 +193,7 @@
         }
       }
     }
+
   }
 
 }
