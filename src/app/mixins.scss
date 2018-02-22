@@ -39,3 +39,22 @@
     text-shadow: 1px 1px 0 $text-shadow-color;
 
 }
+
+
+@mixin button-with-letter-spacing($width, $height, $border, $color, $margin, $letterSpacing, $text-shadow) {
+  width: $width;
+  height: $height;
+  border: $border;
+  color: $color;
+  margin: $margin;
+  background-color: transparent;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  &:hover {
+    letter-spacing: $letterSpacing;
+    transform: scale(1.03);
+    font-weight: 600;
+    text-shadow: $text-shadow;
+  }
+}
