@@ -17,6 +17,7 @@ import { ButtonComponent } from './button/button.component';
 import { SyncFilmComponent } from './sync-film/sync-film.component';
 import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SortablejsModule} from "angular-sortablejs";
 
 
 
@@ -39,7 +40,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SortablejsModule.forRoot({ animation: 150 }),
   ],
   providers: [SharedTokenService],
   bootstrap: [AppComponent]

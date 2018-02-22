@@ -1,6 +1,7 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input, OnInit} from "@angular/core";
 import {ImdbResultsForLocalStorage} from "../models/imdb-results-for-local-storage";
 import {MovieObject} from "../models/movie";
+
 
 @Component({
   selector: 'app-sync-film',
@@ -13,14 +14,14 @@ export class SyncFilmComponent implements OnInit{
   show: boolean = false;
   modalResults: MovieObject[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
 
   showMoreResults(results) {
     this.modalResults = results;
-console.log(this.modalResults);
+    console.log(this.modalResults);
     this.show = !this.show;
   }
 }

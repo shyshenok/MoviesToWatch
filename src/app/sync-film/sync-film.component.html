@@ -47,7 +47,7 @@
           <div class="time">time</div>
           <div class="rating"> rating</div>
         </div>
-        <ul>
+        <ul [sortablejs]="modalResults" [sortablejsOptions]="{ animation: 150 }">
           <li *ngFor="let modalResult of modalResults">
             <a class="imdb-name">{{modalResult.title}}</a>
             <a class="time">{{modalResult.runtime}}</a>
