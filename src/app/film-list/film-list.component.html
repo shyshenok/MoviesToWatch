@@ -50,8 +50,9 @@
       </div>
     </ng-template>
 
-    <ng-template #twoContent>
-      <app-sync-film [movieResponseResult]="movieResponseResult"></app-sync-film>
+    <ng-template #twoContent >
+      <app-sync-film [movieResponseResult]="movieResponseResult"
+                     (deleteFilm)="deleteFromCache($event)"></app-sync-film>
 
     </ng-template>
 

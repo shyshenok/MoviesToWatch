@@ -1,10 +1,6 @@
 
 <div class="sync-component">
 
-  <!--search?-->
-
-
-
     <div class="table">
       <div class="wl-name">wunderlist name</div>
       <div class="imdb-name">imdb name</div>
@@ -27,7 +23,7 @@
           <span *ngIf="film.results.length === 0" class="status-not-found"></span>
           <span *ngIf="film.results.length > 1"
                 class="status-more-then-one"
-                (click)=showMoreResults(film.results)></span>
+                (click)=showMoreResults(film)></span>
 
         </a>
       </li>
@@ -54,7 +50,7 @@
             <a class="time">{{modalResult.runtime}}</a>
             <a class="rating">{{modalResult.vote_average}}</a>
             <a class="add-button"><i class="fas fa-plus"></i></a>
-            <a class="delete-button"><i class="fas fa-minus"></i></a>
+            <a class="delete-button" (click)="clickMinus(modalWunderlistId); deleteFromDialog(modalResult.id)"><i class="fas fa-minus"></i></a>
           </li>
         </ul>
       </app-modal-dialog>

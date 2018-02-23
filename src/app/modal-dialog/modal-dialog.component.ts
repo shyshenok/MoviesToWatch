@@ -32,4 +32,6 @@ export class ModalDialogComponent implements OnInit {
     this.visibleChange.emit(this.visible);
   }
 
+
+
 }

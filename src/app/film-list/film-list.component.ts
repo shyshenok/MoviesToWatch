@@ -103,7 +103,7 @@ export class FilmListComponent implements OnInit {
         localStorage.setItem('results', JSON.stringify(arrayOfImdbResultsForLocalStorage));
 
         this.movieResponseResult = arrayOfImdbResultsForLocalStorage;
-        console.log(arrayOfImdbResultsForLocalStorage);
+        console.log(localStorage.getItem('results'));
 
       });
 
@@ -157,7 +157,6 @@ export class FilmListComponent implements OnInit {
     let temp = JSON.parse(localStorage.getItem('results'));
     console.log(temp);
     let foundResult = temp.findIndex(object => object.wunderlistId === id);
-    console.log("foundResult" + foundResult);
     if (foundResult !== -1) {
       console.log('if');
       temp.splice(foundResult, 1);
