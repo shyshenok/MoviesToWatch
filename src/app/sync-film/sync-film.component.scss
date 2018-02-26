@@ -164,6 +164,20 @@
       }
     }
 
+    .table {
+      .time,
+      .rating {
+        cursor: unset;
+        box-shadow: none;
+        transition: none;
+        &:hover {
+          background-color: unset;
+          color: unset;
+          text-shadow: none;
+        }
+      }
+    }
+
     .imdb-name {
       width: 44%;
       max-width: 44%;
@@ -176,6 +190,8 @@
       width: 20%;
       max-width: 20%;
     }
+
+
 
     .add-button,
     .delete-button {
