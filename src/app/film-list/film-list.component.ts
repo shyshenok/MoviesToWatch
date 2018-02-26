@@ -96,14 +96,13 @@ export class FilmListComponent implements OnInit {
             .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey))
               .toArray()
           )
-          .map(arrayOfResults => new ImdbResultsForLocalStorage(o.id, o.title, arrayOfResults)))
+          .map(arrayOfResults => new ImdbResultsForLocalStorage(o.id, o.title, o.created_by_id, arrayOfResults)))
       .toArray()
       .subscribe(arrayOfImdbResultsForLocalStorage => {
 
         localStorage.setItem('results', JSON.stringify(arrayOfImdbResultsForLocalStorage));
 
         this.movieResponseResult = arrayOfImdbResultsForLocalStorage;
-        console.log(localStorage.getItem('results'));
 
       });
 
@@ -137,7 +136,7 @@ export class FilmListComponent implements OnInit {
       .flatMap(results => Observable.from(results)
         .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey+"&language=ru-RU"))
         .toArray())
-      .map(results => new ImdbResultsForLocalStorage(film.id, film.title, results))
+      .map(results => new ImdbResultsForLocalStorage(film.id, film.title, film.created_by_id, results))
       .subscribe(data => {
 
         this.addToCache(data)

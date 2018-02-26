@@ -1,4 +1,8 @@
-
+<app-tabs (currentTab)="onTabChange($event)">
+  <app-tab [tabTitle]="'All'"></app-tab>
+  <app-tab [tabTitle]="'Good films'"></app-tab>
+  <app-tab [tabTitle]="'Bad films'"></app-tab>
+</app-tabs>
 <div class="sync-component">
 
     <div class="table">
@@ -10,7 +14,7 @@
     </div>
   <div class="response">
     <ul>
-      <li *ngFor="let film of movieResponseResult">
+      <li *ngFor="let film of displayMovieResponseResult">
         <a class="wl-name" >{{film.wunderlistTitle}}</a>
         <a class="imdb-name" *ngIf="film.results.length > 0">{{film.results[0].title}} </a>
         <a class="imdb-name" *ngIf="film.results.length === 0"> result not found </a>

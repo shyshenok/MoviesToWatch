@@ -6,21 +6,21 @@
     <app-button [buttonTitle]="'Back'"></app-button>
   </app-exit-button>
 
-    <app-exit-button class="sync-list" (click)="selectFunction()">
-      <div *ngIf="!ifClicked; then sync else list"></div>
+  <app-exit-button class="sync-list" (click)="selectFunction()">
+    <div *ngIf="!ifClicked; then sync else list"></div>
 
-      <ng-template #sync>
-        <app-button  [buttonTitle]="'sync IMDB'"></app-button>
-      </ng-template>
+    <ng-template #sync>
+      <app-button [buttonTitle]="'sync IMDB'"></app-button>
+    </ng-template>
 
-      <ng-template #list>
-        <app-button  [buttonTitle]="'go to wunderlist film'"></app-button>
-      </ng-template>
+    <ng-template #list>
+      <app-button [buttonTitle]="'go to wunderlist film'"></app-button>
+    </ng-template>
 
-    </app-exit-button>
+  </app-exit-button>
 
   <div class="content">
-    <app-textarea [listId] = 'listId'
+    <app-textarea [listId]='listId'
                   (newFilmInList)="addFilm($event)"></app-textarea>
     <div class="control-button-wrapper">
       <div class="control-button">
@@ -30,11 +30,12 @@
     </div>
     <div *ngIf="!ifClicked; then oneContent else twoContent"></div>
     <ng-template #oneContent>
-      <app-tabs (currentTab) = "onTabChange($event)">
+      <app-tabs (currentTab)="onTabChange($event)">
         <app-tab [tabTitle]="'All'"></app-tab>
         <app-tab [tabTitle]="'Good films'"></app-tab>
         <app-tab [tabTitle]="'Bad films'"></app-tab>
       </app-tabs>
+
       <div class="list-of-film">
         <ul>
           <li *ngFor="let film of displayFilmList; index as i">
@@ -50,7 +51,7 @@
       </div>
     </ng-template>
 
-    <ng-template #twoContent >
+    <ng-template #twoContent>
       <app-sync-film [movieResponseResult]="movieResponseResult"
                      (deleteFilm)="deleteFromCache($event)"></app-sync-film>
 
