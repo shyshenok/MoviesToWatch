@@ -72,10 +72,12 @@
           border-right: 2px solid transparent;
           border-bottom: 2px solid transparent;
           border-top: 2px solid transparent;
+          display: flex;
+          align-items: center;
         }
         .time,
         .rating {
-          text-align: center;
+          justify-content: center;
         }
 
         .status {
