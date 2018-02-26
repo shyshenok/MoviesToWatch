@@ -12,10 +12,9 @@ export class SyncFilmComponent implements OnInit, OnChanges{
 
   @Input() movieResponseResult: ImdbResultsForLocalStorage[];
   displayMovieResponseResult: ImdbResultsForLocalStorage[];
-  sortingResponceResult: ImdbResultsForLocalStorage[][];
-  sortByRuntime: ImdbResultsForLocalStorage[];
   tabNumber: number;
-  minMax: boolean = false;
+  minMaxForRating:boolean = false;
+  minMaxForTime: boolean = false;
   show: boolean = false;
   modalResults: MovieObject[];
   modalWunderlistId: ImdbResultsForLocalStorage;
@@ -63,18 +62,11 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   }
 
   sortingByRuntime() {
-    if (!this.minMax) {
-      this.minMax = true;
-      this.fromMinToMax();
-    }
-    else {
-      this.minMax = false;
-      this.fromMaxToMin();
-    }
-
+    this.minMaxForTime = !this.minMaxForTime;
+    this._sortingByRuntime(this.minMaxForTime);
   }
 
-  fromMinToMax() {
+  _sortingByRuntime(asc:boolean) {
     this.movieResponseResult.sort((a,b) => {
       let aRuntime = 0;
       let bRuntime = 0;
@@ -84,21 +76,37 @@ export class SyncFilmComponent implements OnInit, OnChanges{
       if(b.results.length > 0) {
         bRuntime = b.results[0].runtime;
       }
-      return aRuntime - bRuntime;
+      if(asc) {
+        return aRuntime - bRuntime;
+      } else {
+        return bRuntime - aRuntime;
+      }
     });
   }
 
-  fromMaxToMin() {
+
+  sortingByRating() {
+    this.minMaxForRating = !this.minMaxForRating;
+    this._sortingByRating(this.minMaxForRating);
+  }
+
+  _sortingByRating(asc: boolean) {
     this.movieResponseResult.sort((a,b) => {
-      let aRuntime = 0;
-      let bRuntime = 0;
+      let aRating = 0;
+      let bRating = 0;
       if(a.results.length > 0) {
-        aRuntime = a.results[0].runtime;
+        aRating = a.results[0].vote_average;
       }
       if(b.results.length > 0) {
-        bRuntime = b.results[0].runtime;
+        bRating = b.results[0].vote_average;
       }
-      return bRuntime - aRuntime;
+      if(asc) {
+        return bRating - aRating;
+
+      } else {
+        return aRating - bRating;
+
+      }
     });
   }
 
