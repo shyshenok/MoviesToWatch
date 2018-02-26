@@ -12,27 +12,46 @@
     max-width: 100%;
     text-transform: uppercase;
     font-size: 14px;
-    padding: 10px;
     background-color: rgba($bottom-text-shadow-color, 0.3);
     color:rgba($list-background-color, 1);
     text-align: center;
+
+    .wl-name,
+    .imdb-name,
+    .time,
+    .rating,
+    .status{
+      padding: 10px;
+    }
+
+    .time,
+    .rating {
+      cursor: pointer;
+      box-shadow: 0 2px 12px -1px darken($bottom-text-shadow-color, 20%);
+      transition: .3s ease all;
+      &:hover {
+        text-shadow: 1px 1px 0 rgba($bottom-text-shadow-color, 0.3);
+        background-color: rgba($list-background-color, 1);
+        color: rgba($bottom-text-shadow-color, 1);
+      }
+    }
   }
 
   .wl-name {
-    width: 33%;
-    max-width: 33%;
+    width: 32%;
+    max-width: 32%;
   }
   .imdb-name {
-    width: 33%;
-    max-width: 33%;
+    width: 32%;
+    max-width: 32%;
   }
   .time {
-    width: 13%;
-    max-width: 13%;
+    width: 14%;
+    max-width: 14%;
   }
   .rating {
-    width: 10%;
-    max-width: 10%;
+    width: 11%;
+    max-width: 11%;
   }
   .status {
     width: 11%;
