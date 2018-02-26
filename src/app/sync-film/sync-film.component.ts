@@ -12,7 +12,10 @@ export class SyncFilmComponent implements OnInit, OnChanges{
 
   @Input() movieResponseResult: ImdbResultsForLocalStorage[];
   displayMovieResponseResult: ImdbResultsForLocalStorage[];
+  sortingResponceResult: ImdbResultsForLocalStorage[][];
+  sortByRuntime: ImdbResultsForLocalStorage[];
   tabNumber: number;
+  minMax: boolean = false;
   show: boolean = false;
   modalResults: MovieObject[];
   modalWunderlistId: ImdbResultsForLocalStorage;
@@ -25,7 +28,6 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   ngOnChanges() {
     this.displayMovieResponseResult = this.movieResponseResult;
   }
-
 
   ngOnInit(){
 
@@ -60,9 +62,47 @@ export class SyncFilmComponent implements OnInit, OnChanges{
     this.show = !this.show;
   }
 
-  clickMinus(id) {
+  sortingByRuntime() {
+    if (!this.minMax) {
+      this.minMax = true;
+      this.fromMinToMax();
+    }
+    else {
+      this.minMax = false;
+      this.fromMaxToMin();
+    }
 
-    console.log(id);
+  }
+
+  fromMinToMax() {
+    this.movieResponseResult.sort((a,b) => {
+      let aRuntime = 0;
+      let bRuntime = 0;
+      if(a.results.length > 0) {
+        aRuntime = a.results[0].runtime;
+      }
+      if(b.results.length > 0) {
+        bRuntime = b.results[0].runtime;
+      }
+      return aRuntime - bRuntime;
+    });
+  }
+
+  fromMaxToMin() {
+    this.movieResponseResult.sort((a,b) => {
+      let aRuntime = 0;
+      let bRuntime = 0;
+      if(a.results.length > 0) {
+        aRuntime = a.results[0].runtime;
+      }
+      if(b.results.length > 0) {
+        bRuntime = b.results[0].runtime;
+      }
+      return bRuntime - aRuntime;
+    });
+  }
+
+  clickMinus(id) {
     this.deleteFilm.emit(id);
   }
 
