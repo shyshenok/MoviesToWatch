@@ -32,7 +32,6 @@ export class TextareaComponent implements OnInit {
   }
 
   onChange(value) {
-
     this.sendInputValue.emit(value);
   }
 

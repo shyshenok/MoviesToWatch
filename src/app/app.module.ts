@@ -18,6 +18,7 @@ import { SyncFilmComponent } from './sync-film/sync-film.component';
 import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SortablejsModule} from "angular-sortablejs";
+import { SearchByTitlePipe } from './search.pipe';
 
 
 
@@ -34,6 +35,7 @@ import {SortablejsModule} from "angular-sortablejs";
     ButtonComponent,
     SyncFilmComponent,
     ModalDialogComponent,
+    SearchByTitlePipe,
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,16 @@
-<app-tabs (currentTab)="onTabChange($event)">
-  <app-tab [tabTitle]="'All'"></app-tab>
-  <app-tab [tabTitle]="'Good films'"></app-tab>
-  <app-tab [tabTitle]="'Bad films'"></app-tab>
-</app-tabs>
-<div class="sync-component">
 
+
+<div class="sync-component">
+  <div class="search">
+    <i class="fas fa-search"></i>
+    <app-textarea (sendInputValue)="getInputValue($event)"></app-textarea>
+  </div>
+
+  <app-tabs (currentTab)="onTabChange($event)">
+    <app-tab [tabTitle]="'All'"></app-tab>
+    <app-tab [tabTitle]="'Good films'"></app-tab>
+    <app-tab [tabTitle]="'Bad films'"></app-tab>
+  </app-tabs>
     <div class="table">
       <div class="wl-name">wunderlist name</div>
       <div class="imdb-name">imdb name</div>
@@ -14,7 +20,7 @@
     </div>
   <div class="response">
     <ul>
-      <li *ngFor="let film of displayMovieResponseResult">
+      <li *ngFor="let film of (displayMovieResponseResult | searchByTitle: filterValue)">
         <a class="wl-name" >{{film.wunderlistTitle}}</a>
         <a class="imdb-name" *ngIf="film.results.length > 0">{{film.results[0].title}} </a>
         <a class="imdb-name" *ngIf="film.results.length === 0"> result not found </a>

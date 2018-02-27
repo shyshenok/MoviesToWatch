@@ -6,6 +6,16 @@
 
 
 .sync-component {
+  .search {
+    margin: 30px 0;
+    position: relative;
+    i {
+      color:rgba($list-background-color, 1);
+      position: absolute;
+      right: 4%;
+      bottom: 30%;
+    }
+  }
   .table{
     display: flex;
     flex-flow: row wrap;

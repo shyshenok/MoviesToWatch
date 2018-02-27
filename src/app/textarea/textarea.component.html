@@ -8,7 +8,7 @@
              [(ngModel)]="inputValue"
              (focus)="focusFunction(true)"
              (focusout)="focusFunction(false)"
-             (change)="onChange(inputValue)"/>
+             (ngModelChange)="onChange(inputValue)"/>
       <label class="label" [ngClass] = "top ?'label-has-content':'label'">Name of film</label>
       <span class="focus-border">
             	<i></i>

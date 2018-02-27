@@ -1,13 +1,17 @@
-import { Component,EventEmitter, Input, OnChanges, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, Injectable, Input, OnChanges, OnInit, Output} from "@angular/core";
 import {ImdbResultsForLocalStorage} from "../models/imdb-results-for-local-storage";
 import {MovieObject} from "../models/movie";
+import { SearchByTitlePipe } from './search.pipe';
+
 
 
 @Component({
   selector: 'app-sync-film',
   templateUrl: './sync-film.component.html',
-  styleUrls: ['./sync-film.component.scss']
+  styleUrls: ['./sync-film.component.scss'],
 })
+
+@Injectable()
 export class SyncFilmComponent implements OnInit, OnChanges{
 
   @Input() movieResponseResult: ImdbResultsForLocalStorage[];
@@ -18,6 +22,7 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   show: boolean = false;
   modalResults: MovieObject[];
   modalWunderlistId: ImdbResultsForLocalStorage;
+  filterValue: string;
   @Output() deleteFilm = new EventEmitter();
 
 
@@ -38,8 +43,6 @@ export class SyncFilmComponent implements OnInit, OnChanges{
     this.tabNumber = tab;
     if (this.tabNumber === 0) {
       this.displayMovieResponseResult = this.movieResponseResult;
-      console.log(this.displayMovieResponseResult);
-
       return;
     }
 
@@ -120,6 +123,10 @@ export class SyncFilmComponent implements OnInit, OnChanges{
     if (foundResult !== -1) {
       this.modalResults.splice(foundResult, 1);
     }
+  }
+
+  getInputValue(value) {
+    this.filterValue = value;
   }
 
 

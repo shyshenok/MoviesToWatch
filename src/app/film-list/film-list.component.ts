@@ -131,7 +131,6 @@ export class FilmListComponent implements OnInit {
 
   getInputValue(value) {
     this.inputValue = value;
-    console.log(this.inputValue);
   }
 
   addNewFilm() {
