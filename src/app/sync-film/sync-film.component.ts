@@ -26,6 +26,7 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   }
   ngOnChanges() {
     this.displayMovieResponseResult = this.movieResponseResult;
+    console.log(this.displayMovieResponseResult);
   }
 
   ngOnInit(){

@@ -22,12 +22,6 @@
       border: none;
       border-bottom: 1px solid $button-color;
     }
-    button {
-      @include button-with-letter-spacing(30%, 40px, 1px solid $button-color,
-        $button-color, 20px 0, 2px, 1px 1px
-        0 $bottom-text-shadow-color);
-      align-self: flex-end;
-    }
   }
 }
 

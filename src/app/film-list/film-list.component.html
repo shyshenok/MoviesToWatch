@@ -20,8 +20,9 @@
   </app-exit-button>
 
   <div class="content">
-    <app-textarea [listId]='listId'
-                  (newFilmInList)="addFilm($event)"></app-textarea>
+    <app-textarea (sendInputValue)="getInputValue($event)">
+      <button class="btn" (click)="addNewFilm()">Add new film</button>
+    </app-textarea>
     <div class="control-button-wrapper">
       <div class="control-button">
         <a class="btn" (click)="doRandomize(displayFilmList)">Random</a>

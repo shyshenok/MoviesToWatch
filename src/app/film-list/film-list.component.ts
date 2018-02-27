@@ -66,7 +66,6 @@ export class FilmListComponent implements OnInit {
         },)
         .subscribe(data => {
           this.filmList = data;
-          console.log(this.filmList);
 
           this.displayFilmList = this.filmList;
         });
@@ -74,6 +73,7 @@ export class FilmListComponent implements OnInit {
     });
 
   }
+
 
   selectFunction() {
     if (!this.ifClicked) {
@@ -128,21 +128,44 @@ export class FilmListComponent implements OnInit {
     })
   }
 
-  addFilm(film: WunderlistTask) {
-    this.filmList.push(film);
-    this.textareaComponent.clearInput();
-    this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&query=' + film.title.replace(" ", '+')+"&language=ru-RU")
-      .map(data => data.results)
-      .flatMap(results => Observable.from(results)
-        .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey+"&language=ru-RU"))
-        .toArray())
-      .map(results => new ImdbResultsForLocalStorage(film.id, film.title, film.created_by_id, results))
-      .subscribe(data => {
-
-        this.addToCache(data)
-
-      })
+  getInputValue(value) {
+    this.inputValue = value;
+    console.log(this.inputValue);
   }
+
+  addNewFilm() {
+
+    let body = `{\"list_id\":${this.listId}, \"title\":\"${this.inputValue}\"}`;
+
+    this.httpClient.post<WunderlistTask>('https://a.wunderlist.com/api/v1/tasks', body ,{
+      headers: {'X-Access-Token': this.headerToken,
+        'X-Client-ID': this.clientId,
+        'Content-Type': 'application/json'
+      }
+    }).subscribe(data => {
+      this.filmList.push(data);
+      console.log(this.filmList);
+    });
+
+    this.textareaComponent.clearInput();
+  }
+
+  // addFilm(film: WunderlistTask) {
+  //   this.filmList.push(film);
+  //   this.textareaComponent.clearInput();
+  //   this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&query=' + film.title.replace(" ", '+')+"&language=ru-RU")
+  //     .map(data => data.results)
+  //     .flatMap(results => Observable.from(results)
+  //       .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey+"&language=ru-RU"))
+  //       .toArray())
+  //     .map(results => new ImdbResultsForLocalStorage(film.id, film.title, film.created_by_id, results))
+  //     .subscribe(data => {
+  //
+  //       this.addToCache(data)
+  //
+  //     })
+  // }
+
 
   addToCache(element) {
     let temp = JSON.parse(localStorage.getItem('results'));

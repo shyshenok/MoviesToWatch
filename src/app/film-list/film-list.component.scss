@@ -121,6 +121,17 @@
     }
   }
 
+  .content {
+    app-textarea {
+      button {
+        @include button-with-letter-spacing(30%, 40px, 1px solid $button-color,
+          $button-color, 20px 0, 2px, 1px 1px
+          0 $bottom-text-shadow-color);
+        align-self: flex-end;
+      }
+    }
+  }
+
   .control-button-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

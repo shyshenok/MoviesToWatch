@@ -7,14 +7,16 @@
              name="inputValue"
              [(ngModel)]="inputValue"
              (focus)="focusFunction(true)"
-             (focusout)="focusFunction(false)"/>
+             (focusout)="focusFunction(false)"
+             (change)="onChange(inputValue)"/>
       <label class="label" [ngClass] = "top ?'label-has-content':'label'">Name of film</label>
       <span class="focus-border">
             	<i></i>
       </span>
     </div>
 
-    <button class="btn" (click)="addNewFilm()">Add new film</button>
+    <ng-content></ng-content>
+
   </form>
 
 
