@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Injectable, OnInit, Output} from "@angular/core";
 
 
 @Injectable()
@@ -10,12 +10,13 @@ import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core
 })
 export class TextareaComponent implements OnInit {
 
-  inputValue:string;
-  @Output() sendInputValue = new EventEmitter<string>()
-  top:boolean = false;
+  inputValue: string = "";
+  @Output() sendInputValue = new EventEmitter<string>();
+  top: boolean = false;
 
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
 
@@ -23,14 +24,15 @@ export class TextareaComponent implements OnInit {
 
   focusFunction(isFocused) {
 
-    if(isFocused){
-        this.top = true;
+    if (isFocused) {
+      this.top = true;
     } else {
       this.top = this.inputValue !== '';
     }
   }
 
   onChange(value) {
+
     this.sendInputValue.emit(value);
   }
 

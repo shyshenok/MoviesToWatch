@@ -33,6 +33,7 @@ export class FilmListComponent implements OnInit {
   randChoise: string;
   tabNumber: number;
   ifChange: boolean = false;
+  inputValue:string;
   @ViewChild(TextareaComponent) textareaComponent: TextareaComponent;
 
   constructor(private httpClient: HttpClient,
