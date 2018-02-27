@@ -143,28 +143,24 @@ export class FilmListComponent implements OnInit {
         'Content-Type': 'application/json'
       }
     }).subscribe(data => {
-      this.filmList.push(data);
-      console.log(this.filmList);
+      this.queryForTMDBInfo(data)
     });
-
-    this.textareaComponent.clearInput();
   }
 
-  // addFilm(film: WunderlistTask) {
-  //   this.filmList.push(film);
-  //   this.textareaComponent.clearInput();
-  //   this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&query=' + film.title.replace(" ", '+')+"&language=ru-RU")
-  //     .map(data => data.results)
-  //     .flatMap(results => Observable.from(results)
-  //       .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey+"&language=ru-RU"))
-  //       .toArray())
-  //     .map(results => new ImdbResultsForLocalStorage(film.id, film.title, film.created_by_id, results))
-  //     .subscribe(data => {
-  //
-  //       this.addToCache(data)
-  //
-  //     })
-  // }
+  queryForTMDBInfo(film: WunderlistTask) {
+    this.filmList.push(film);
+    this.textareaComponent.clearInput();
+    this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&query=' + film.title.replace(" ", '+')+"&language=ru-RU")
+      .map(data => data.results)
+      .flatMap(results => Observable.from(results)
+        .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey+"&language=ru-RU"))
+        .toArray())
+      .map(results => new ImdbResultsForLocalStorage(film.id, film.title, film.created_by_id, results))
+      .subscribe(data => {
+
+        this.addToCache(data)
+      })
+  }
 
 
   addToCache(element) {
@@ -196,7 +192,7 @@ export class FilmListComponent implements OnInit {
     console.log(currentElRevision);
     let body = `{\"revision\":${currentElRevision}, \"completed\":${completed}}`;
 
-    this.httpClient.patch<WunderlistTask>('https://a.wunderlist.com/api/v1/tasks/' + currentElId+"&language=ru-RU", body, {
+    this.httpClient.patch<WunderlistTask>('https://a.wunderlist.com/api/v1/tasks/' + currentElId, body, {
       headers: {
         'X-Access-Token': this.headerToken,
         'X-Client-ID': this.clientId,
