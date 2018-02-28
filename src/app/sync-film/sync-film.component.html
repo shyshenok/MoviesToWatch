@@ -44,7 +44,7 @@
 
         </a>
       </li>
-      <app-modal-dialog [(visible)]="showMoreRes">
+      <app-modal-dialog class="see-more-results" [(visible)]="showMoreRes">
         <h3>You can use "drop and drag" for change film`s priority</h3>
         <div class="description">
           <p class="add-button">
@@ -72,16 +72,22 @@
         </ul>
       </app-modal-dialog>
 
-      <app-modal-dialog [(visible)]="showAboutContent">
-        <figure class="poster">
-          <img [src]="this.imageLink" alt="">
-        </figure>
-        <article>
-          {{aboutTheFilm.overview}}
-          <ul  *ngFor="let genre of genresFilm">
-            <li>{{genre.name}}</li>
-          </ul>
-        </article>
+      <app-modal-dialog class="see-more-info" [(visible)]="showAboutContent">
+        <h3>{{aboutTheFilm.title}}</h3>
+
+        <div class="dialog-wrapper">
+
+          <figure class="poster">
+            <img [src]="this.imageLink" alt="">
+          </figure>
+          <article>
+            <main>{{aboutTheFilm.overview}}</main>
+            <ul  *ngFor="let genre of genresFilm">
+              <li>{{genre.name}}</li>
+            </ul>
+          </article>
+        </div>
+
 
       </app-modal-dialog>
 

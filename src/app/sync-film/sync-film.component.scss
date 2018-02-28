@@ -149,7 +149,7 @@
     }
   }
 
-  app-modal-dialog {
+  .see-more-results {
 
     h3 {
       color: $bottom-text-shadow-color;
@@ -201,8 +201,6 @@
       max-width: 20%;
     }
 
-
-
     .add-button,
     .delete-button {
       width: 8%;
@@ -240,10 +238,60 @@
         }
       }
     }
+  }
+
+  .see-more-info {
+    text-align: center;
+
+    h3 {
+      color:$bottom-text-shadow-color;
+      border-bottom: 1px dashed $overlay;
+      padding: 8px;
+      margin: 10px auto;
+      display: inline-block;
+    }
+    .dialog-wrapper {
+      display: flex;
+      padding-top: 20px;
+      align-items: center;
+      .poster {
+        flex-basis: 50%;
+        margin: 0 10px;
+        align-self: center;
+        img {
+          width: 100%;
+        }
+      }
+
+      article {
+        flex-basis: 80%;
+        padding:10px;
+        color: $overlay;
+
+        main {
+          text-align: left;
+          margin: 10px 0;
+          letter-spacing: 0.5px;
+        }
+        ul {
+          li {
+            list-style: none;
+            cursor: unset;
+            &:hover {
+              cursor: unset;
+              color:$bottom-text-shadow-color;
+              text-shadow: none;
+            }
+          }
+        }
+
+      }
+    }
 
   }
 
 }
+
 
 
 
