@@ -8,8 +8,6 @@ import {ImdbResultsForLocalStorage} from "./models/imdb-results-for-local-storag
 
 export class SearchByTitlePipe implements PipeTransform {
   transform(items: ImdbResultsForLocalStorage[], searchText: string): any[] {
-    console.log(items);
-    console.log(searchText);
     if(!items) return [];
     if(!searchText) return items;
     searchText = searchText.toLowerCase();

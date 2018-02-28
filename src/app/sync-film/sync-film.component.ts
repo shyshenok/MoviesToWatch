@@ -4,7 +4,6 @@ import {Genre, MovieObject} from "../models/movie";
 import { SearchByTitlePipe } from './search.pipe';
 
 
-
 @Component({
   selector: 'app-sync-film',
   templateUrl: './sync-film.component.html',
@@ -23,6 +22,7 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   showAboutContent: boolean = false;
   modalResults: MovieObject[];
   modalWunderlistId: ImdbResultsForLocalStorage;
+  imageLink: string;
   filterValue: string;
   aboutTheFilm: MovieObject[] = [];
   genresFilm: Genre[] = [];
@@ -65,8 +65,8 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   showAbout(element) {
     this.aboutTheFilm = element.results[0];
     this.genresFilm = this.aboutTheFilm.genres;
-    console.log(this.genresFilm);
     this.showAboutContent = !this.showAboutContent;
+    this.imageLink = 'https://image.tmdb.org/t/p/w500/' + this.aboutTheFilm.poster_path;
   }
 
   showMoreResults(element) {

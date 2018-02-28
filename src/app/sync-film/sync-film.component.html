@@ -73,8 +73,8 @@
       </app-modal-dialog>
 
       <app-modal-dialog [(visible)]="showAboutContent">
-        <figure>
-          <img src="{{aboutTheFilm.backdrop_path}}" alt="">
+        <figure class="poster">
+          <img [src]="this.imageLink" alt="">
         </figure>
         <article>
           {{aboutTheFilm.overview}}
