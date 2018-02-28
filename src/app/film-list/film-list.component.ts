@@ -94,7 +94,7 @@ export class FilmListComponent implements OnInit {
         this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&query=' + o.title.replace(" ", '+') + "&language=ru")
           .map(data => data.results)
           .flatMap(results => Observable.from(results)
-            .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey))
+            .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey+ '&query=&language=ru'))
               .toArray()
           )
           .map(arrayOfResults => new ImdbResultsForLocalStorage(o.id, o.title, o.created_by_id, arrayOfResults)))
@@ -153,7 +153,7 @@ export class FilmListComponent implements OnInit {
     this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&query=' + film.title.replace(" ", '+')+"&language=ru-RU")
       .map(data => data.results)
       .flatMap(results => Observable.from(results)
-        .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey+"&language=ru-RU"))
+        .flatMap(res => this.httpClient.get<MovieObject>("https://api.themoviedb.org/3/movie/"+res.id+"?api_key="+ this.apiKey+"&query&language=ru-RU"))
         .toArray())
       .map(results => new ImdbResultsForLocalStorage(film.id, film.title, film.created_by_id, results))
       .subscribe(data => {
