@@ -21,12 +21,19 @@
   <div class="response">
     <ul>
       <li *ngFor="let film of (displayMovieResponseResult | searchByTitle: filterValue)">
-        <a class="wl-name" >{{film.wunderlistTitle}}</a>
-        <a class="imdb-name" *ngIf="film.results.length > 0">{{film.results[0].title}} </a>
+        <a class="wl-name"
+           (click)="showAbout(film)" >{{film.wunderlistTitle}}</a>
+        <a class="imdb-name"
+           *ngIf="film.results.length > 0"
+           (click)="showAbout(film)">{{film.results[0].title}} </a>
         <a class="imdb-name" *ngIf="film.results.length === 0"> result not found </a>
-        <a class="time" *ngIf="film.results.length > 0" >{{film.results[0].runtime}}min </a>
+        <a class="time"
+           *ngIf="film.results.length > 0"
+           (click)="showAbout(film)">{{film.results[0].runtime}}min </a>
         <a class="time" *ngIf="film.results.length === 0"> 0 </a>
-        <a class="rating" *ngIf="film.results.length > 0"> {{film.results[0].vote_average}}</a>
+        <a class="rating"
+           *ngIf="film.results.length > 0"
+           (click)="showAbout(film)"> {{film.results[0].vote_average}}</a>
         <a class="rating" *ngIf="film.results.length === 0"> 0 </a>
         <a class="status" >
           <span *ngIf="film.results.length === 1" class="status-ok"></span>
@@ -37,7 +44,7 @@
 
         </a>
       </li>
-      <app-modal-dialog [(visible)]="show">
+      <app-modal-dialog [(visible)]="showMoreRes">
         <h3>You can use "drop and drag" for change film`s priority</h3>
         <div class="description">
           <p class="add-button">
@@ -64,6 +71,20 @@
           </li>
         </ul>
       </app-modal-dialog>
+
+      <app-modal-dialog [(visible)]="showAboutContent">
+        <figure>
+          <img src="{{aboutTheFilm.backdrop_path}}" alt="">
+        </figure>
+        <article>
+          {{aboutTheFilm.overview}}
+          <ul  *ngFor="let genre of genresFilm">
+            <li>{{genre.name}}</li>
+          </ul>
+        </article>
+
+      </app-modal-dialog>
+
     </ul>
 
   </div>

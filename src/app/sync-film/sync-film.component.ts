@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Injectable, Input, OnChanges, OnInit, Output} from "@angular/core";
 import {ImdbResultsForLocalStorage} from "../models/imdb-results-for-local-storage";
-import {MovieObject} from "../models/movie";
+import {Genre, MovieObject} from "../models/movie";
 import { SearchByTitlePipe } from './search.pipe';
 
 
@@ -19,10 +19,13 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   tabNumber: number;
   minMaxForRating:boolean = false;
   minMaxForTime: boolean = false;
-  show: boolean = false;
+  showMoreRes: boolean = false;
+  showAboutContent: boolean = false;
   modalResults: MovieObject[];
   modalWunderlistId: ImdbResultsForLocalStorage;
   filterValue: string;
+  aboutTheFilm: MovieObject[] = [];
+  genresFilm: Genre[] = [];
   @Output() deleteFilm = new EventEmitter();
 
 
@@ -59,10 +62,17 @@ export class SyncFilmComponent implements OnInit, OnChanges{
 
 }
 
+  showAbout(element) {
+    this.aboutTheFilm = element.results[0];
+    this.genresFilm = this.aboutTheFilm.genres;
+    console.log(this.genresFilm);
+    this.showAboutContent = !this.showAboutContent;
+  }
+
   showMoreResults(element) {
     this.modalResults = element.results;
     this.modalWunderlistId = element.wunderlistId;
-    this.show = !this.show;
+    this.showMoreRes = !this.showMoreRes;
   }
 
   sortingByRuntime() {
