@@ -57,7 +57,8 @@
     <ng-template #twoContent>
       <app-sync-film [movieResponseResult]="movieResponseResult"
                      [listId]="listId"
-                     (deleteFilm)="deleteFromCache($event)"></app-sync-film>
+                     (deleteFilm)="deleteFromCache($event)"
+                     (sendTitleForAddToWunderlist)="queryForTMDBInfo($event)"></app-sync-film>
 
     </ng-template>
 

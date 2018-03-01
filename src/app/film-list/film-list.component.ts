@@ -151,7 +151,9 @@ export class FilmListComponent implements OnInit {
 
   queryForTMDBInfo(film: WunderlistTask) {
     this.filmList.push(film);
-    this.textareaComponent.clearInput();
+    if(this.textareaComponent) {
+      this.textareaComponent.clearInput();
+    }
     this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&query=' + film.title.replace(" ", '+')+"&language=ru-RU")
       .map(data => data.results)
       .flatMap(results => Observable.from(results)
@@ -161,6 +163,7 @@ export class FilmListComponent implements OnInit {
       .subscribe(data => {
 
         this.addToCache(data)
+
       })
   }
 

@@ -34,7 +34,6 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   titleForAddToWunderlist: string;
   headerToken: string;
   clientId: string = "0cfaf22850320aa5eb2c";
-  detelefromModalResults:WunderlistTask;
 
   constructor(private httpClient: HttpClient,
               private sharedServiceToken: SharedTokenService) {

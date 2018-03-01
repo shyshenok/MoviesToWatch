@@ -36,7 +36,9 @@ export class TextareaComponent implements OnInit {
   }
 
   clearInput() {
-    this.inputValue = '';
+    if(this.inputValue !== '') {
+      this.inputValue = '';
+    }
   }
 
 
