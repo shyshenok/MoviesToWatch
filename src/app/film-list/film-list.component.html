@@ -61,8 +61,8 @@
                      (sendTitleForAddToWunderlist)="queryForTMDBInfo($event)"></app-sync-film>
 
     </ng-template>
-    <app-modal-dialog  [(visible)]="showHint">
-      <p>Film already in your list!</p>
+    <app-modal-dialog class="hint" [(visible)]="showHint">
+      <h3>Film already in your list!</h3>
     </app-modal-dialog>
 
   </div>
