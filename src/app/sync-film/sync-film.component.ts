@@ -1,7 +1,9 @@
 import {Component, EventEmitter, Injectable, Input, OnChanges, OnInit, Output} from "@angular/core";
 import {ImdbResultsForLocalStorage} from "../models/imdb-results-for-local-storage";
 import {Genre, MovieObject} from "../models/movie";
-import { SearchByTitlePipe } from './search.pipe';
+import {WunderlistTask} from "../models/wunderlistTasks";
+import {SharedTokenService} from "../services/shared-token.service";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -13,6 +15,7 @@ import { SearchByTitlePipe } from './search.pipe';
 @Injectable()
 export class SyncFilmComponent implements OnInit, OnChanges{
 
+  @Input() listId: number;
   @Input() movieResponseResult: ImdbResultsForLocalStorage[];
   displayMovieResponseResult: ImdbResultsForLocalStorage[];
   tabNumber: number;
@@ -27,9 +30,14 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   aboutTheFilm: MovieObject;
   genresFilm: Genre[] = [];
   @Output() deleteFilm = new EventEmitter();
+  @Output() sendTitleForAddToWunderlist = new EventEmitter<WunderlistTask>();
+  titleForAddToWunderlist: string;
+  headerToken: string;
+  clientId: string = "0cfaf22850320aa5eb2c";
+  detelefromModalResults:WunderlistTask;
 
-
-  constructor() {
+  constructor(private httpClient: HttpClient,
+              private sharedServiceToken: SharedTokenService) {
 
   }
   ngOnChanges() {
@@ -38,6 +46,7 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   }
 
   ngOnInit(){
+    this.headerToken = this.sharedServiceToken.getServiceToken().access_token;
 
   }
 
@@ -61,6 +70,24 @@ export class SyncFilmComponent implements OnInit, OnChanges{
     })
 
 }
+
+  addNewFilm(elem) {
+
+    console.log(elem);
+    this.titleForAddToWunderlist = elem;
+
+    let body = `{\"list_id\":${this.listId}, \"title\":\"${this.titleForAddToWunderlist}\"}`;
+    console.log(body);
+
+    this.httpClient.post<WunderlistTask>('https://a.wunderlist.com/api/v1/tasks', body ,{
+      headers: {'X-Access-Token': this.headerToken,
+        'X-Client-ID': this.clientId,
+        'Content-Type': 'application/json'
+      }
+    }).subscribe(data => {
+      this.sendTitleForAddToWunderlist.emit(data);
+    });
+  }
 
   showAbout(element) {
     this.aboutTheFilm = element.results[0];
