@@ -34,6 +34,7 @@ export class FilmListComponent implements OnInit {
   tabNumber: number;
   ifChange: boolean = false;
   inputValue:string;
+  showHint:boolean = false;
   @ViewChild(TextareaComponent) textareaComponent: TextareaComponent;
 
   constructor(private httpClient: HttpClient,
@@ -145,7 +146,16 @@ export class FilmListComponent implements OnInit {
         'Content-Type': 'application/json'
       }
     }).subscribe(data => {
-      this.queryForTMDBInfo(data)
+      let foundResult = this.displayFilmList.findIndex(object => object.title === data.title);
+      console.log(foundResult);
+      if (foundResult !== -1) {
+        this.showHint = !this.showHint;
+        if(this.textareaComponent) {
+          this.textareaComponent.clearInput();
+        }
+      } else {
+        this.queryForTMDBInfo(data)
+      }
     });
   }
 
