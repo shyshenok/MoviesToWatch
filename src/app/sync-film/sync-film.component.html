@@ -72,7 +72,7 @@
         </ul>
       </app-modal-dialog>
 
-      <app-modal-dialog class="see-more-info" [(visible)]="showAboutContent">
+      <app-modal-dialog *ngIf="aboutTheFilm" class="see-more-info" [(visible)]="showAboutContent">
         <h3>{{aboutTheFilm.title}}</h3>
 
         <div class="dialog-wrapper">

@@ -24,7 +24,7 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   modalWunderlistId: ImdbResultsForLocalStorage;
   imageLink: string;
   filterValue: string;
-  aboutTheFilm: MovieObject[] = [];
+  aboutTheFilm: MovieObject;
   genresFilm: Genre[] = [];
   @Output() deleteFilm = new EventEmitter();
 
