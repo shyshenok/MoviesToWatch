@@ -146,7 +146,7 @@ export class FilmListComponent implements OnInit {
         'Content-Type': 'application/json'
       }
     }).subscribe(data => {
-      let foundResult = this.displayFilmList.findIndex(object => object.title === data.title);
+      let foundResult = this.displayFilmList.findIndex(object => object.title.toLowerCase().trim() === data.title.toLowerCase().trim());
       console.log(foundResult);
       if (foundResult !== -1) {
         this.showHint = !this.showHint;
