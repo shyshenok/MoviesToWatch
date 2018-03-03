@@ -35,6 +35,8 @@ export class FilmListComponent implements OnInit {
   ifChange: boolean = false;
   inputValue:string;
   showHint:boolean = false;
+  showStatus:boolean = false;
+  statusValue: number;
   @ViewChild(TextareaComponent) textareaComponent: TextareaComponent;
 
   constructor(private httpClient: HttpClient,
@@ -89,9 +91,16 @@ export class FilmListComponent implements OnInit {
   }
 
   doSynchronize() {
+    let length = this.displayFilmList.length;
+    let currentLength = length;
+    this.showStatus = true;
     Observable.from(this.displayFilmList)
+
       .bufferCount(12)
       .concatMap(o => {
+        currentLength -= 12;
+        this.statusValue = +((1 - currentLength/length)*100).toFixed(0);
+
         return Observable.timer(5000).map(_ => o);
       })
       .flatMap(buffer => Observable.from(buffer))
@@ -110,6 +119,9 @@ export class FilmListComponent implements OnInit {
           )
           .map(arrayOfResults => new ImdbResultsForLocalStorage(o.id, o.title, o.created_by_id, arrayOfResults)))
       .toArray()
+      .finally(() => {
+      this.showStatus = false;
+    })
       .subscribe(arrayOfImdbResultsForLocalStorage => {
 
         localStorage.setItem('results', JSON.stringify(arrayOfImdbResultsForLocalStorage));
