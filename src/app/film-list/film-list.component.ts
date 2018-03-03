@@ -90,9 +90,11 @@ export class FilmListComponent implements OnInit {
 
   doSynchronize() {
     Observable.from(this.displayFilmList)
+      .bufferCount(12)
       .concatMap(o => {
-        return Observable.timer(800).map(_ => o);
+        return Observable.timer(5000).map(_ => o);
       })
+      .flatMap(buffer => Observable.from(buffer))
       .do(o => console.log("Current: " + o.title))
       .do(o => {
         o.title = o.title.replace('— Википедия', '').replace('- Wikipedia', '').replace('(фильм)', '').trim()
