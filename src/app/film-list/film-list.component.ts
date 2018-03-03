@@ -90,7 +90,10 @@ export class FilmListComponent implements OnInit {
 
   doSynchronize() {
     Observable.from(this.displayFilmList)
-      .delay(500)
+      .concatMap(o => {
+        return Observable.timer(750).map(_ => o);
+      })
+      .do(o => console.log("Current: " + o.title))
       .flatMap(o =>
         this.httpClient.get<MovieResponse>('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&query=' +
                                             o.title.replace(" ", '+') + "&language=ru&include_image_language=ru")
