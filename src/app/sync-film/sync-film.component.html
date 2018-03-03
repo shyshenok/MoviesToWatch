@@ -63,9 +63,9 @@
         </div>
         <ul [sortablejs]="modalResults" [sortablejsOptions]="{ animation: 150 }">
           <li *ngFor="let modalResult of modalResults">
-            <a class="imdb-name">{{modalResult.title}}</a>
-            <a class="time">{{modalResult.runtime}}</a>
-            <a class="rating">{{modalResult.vote_average}}</a>
+            <a class="imdb-name" (click)="showAbout(modalResult)">{{modalResult.title}}</a>
+            <a class="time" (click)="showAbout(modalResult)">{{modalResult.runtime}}</a>
+            <a class="rating" (click)="showAbout(modalResult)">{{modalResult.vote_average}}</a>
             <a class="add-button" (click)="addNewFilm(modalResult.title); deleteFromDialog(modalResult.id)"><i class="fas fa-plus"></i></a>
             <a class="delete-button" (click)="clickMinus(modalWunderlistId); deleteFromDialog(modalResult.id)"><i class="fas fa-minus"></i></a>
           </li>
