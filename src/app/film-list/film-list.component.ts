@@ -96,12 +96,12 @@ export class FilmListComponent implements OnInit {
     this.showStatus = true;
     Observable.from(this.displayFilmList)
 
-      .bufferCount(12)
+      .bufferCount(5)
       .concatMap(o => {
-        currentLength -= 12;
+        currentLength -= 10;
         this.statusValue = +((1 - currentLength/length)*100).toFixed(0);
 
-        return Observable.timer(5000).map(_ => o);
+        return Observable.timer(7000).map(_ => o);
       })
       .flatMap(buffer => Observable.from(buffer))
       .do(o => console.log("Current: " + o.title))

@@ -89,13 +89,16 @@ export class SyncFilmComponent implements OnInit, OnChanges{
   }
 
   showAbout(element) {
-    console.log(element);
-    if(element.length > 0) {
+    if(element.results.length > 0) {
       this.aboutTheFilm = element.results[0];
+
     } else {
       this.aboutTheFilm = element;
+
     }
     this.genresFilm = this.aboutTheFilm.genres;
+    // console.log(this.genresFilm);
+
     this.showAboutContent = !this.showAboutContent;
     this.imageLink = 'https://image.tmdb.org/t/p/w500/' + this.aboutTheFilm.poster_path;
   }
